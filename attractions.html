@@ -1,0 +1,857 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Play Zone | Indoor Play & Party Center</title>
+  <link rel="icon" href="assets/fav.png" type="image/jpeg">
+  <meta name="description"
+    content="Welcome to our colorful, cheerful Kids Indoor Play Zone & Party Center. Book play sessions, get passes, and host unforgettable birthday parties!">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF477E',    // (Playful Pink)
+            accent: '#8338EC',     // (Vibrant Purple)
+            secondary: '#000000',  // Black
+            darkGrey: '#111111'    // Dark Grey
+          },
+          fontFamily: {
+            'display': ['Open Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    [dir="rtl"] .rtl-flip {
+      transform: scaleX(-1);
+    }
+
+    #mobileMenu {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .before-after-card:hover .after-image {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .after-image {
+      clip-path: inset(0 0 0 100%);
+      transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 overflow-x-hidden"
+  data-dir="ltr">
+
+  <nav id="navbar"
+    class="sticky top-0 z-50 transition-colors duration-300 bg-white text-secondary border-b border-gray-100 dark:bg-secondary dark:text-white dark:border-white/10 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 xl:px-8">
+      <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+        <span
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fas fa-shapes text-lg"></i> </span>
+
+        <div class="leading-tight">
+          <span class="block text-xl font-medium tracking-tight text-accent">Kids Play Zone</span>
+          <span class="block text-[10px] text-gray-400 font-medium tracking-wide">Indoor Play & Party Center</span>
+        </div>
+      </a>
+      <div class="hidden xl:flex items-center gap-2">
+        <ul class="flex items-center gap-0.5 text-xs font-medium">
+
+          <!-- Home Dropdown -->
+          <li class="relative group">
+            <button class="home-trigger flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent font-medium transition-colors">
+              <span>Home</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-44 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="index.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 1</a></li>
+              <li><a href="index2.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 2</a></li>
+            </ul>
+          </li>
+
+          <!-- Gallery -->
+          <li><a href="events.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Events</a></li>
+
+          <!-- about -->
+          <li><a href="about.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
+
+          <!-- Contact -->
+          <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+
+          <!-- attractions -->
+          <li><a href="attractions.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Attractions</a></li>
+
+          <!-- Pricing & Passes -->
+          <li><a href="pricing.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Pricing & Passes</a></li>
+
+          <!-- Dashboard Dropdown -->
+          <li class="relative group">
+            <button class="flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors font-medium">
+              <span>Dashboard</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-60 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="admin-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">Admin Dashboard</a></li>
+              <li><a href="user-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">User Dashboard</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
+          <button id="themeToggleDesktop"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="rtlToggleDesktop"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <div class="ml-2 flex items-center gap-2">
+
+            <!-- account Button -->
+            <a href="login.html"
+              class="inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-1.5 text-xs font-medium text-white hover:opacity-90 transition-transform active:scale-95 shadow-md shadow-accent/20">
+              <i class="fas fa-user-circle text-sm"></i>
+              <span>Account</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 xl:hidden">
+        <button id="themeToggleMobile"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-white/10">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="hamburger"
+          class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md bg-gray-100 dark:bg-white/5"
+          aria-label="Toggle Menu">
+          <span id="line1" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line2" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line3" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu"
+      class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 xl:hidden overflow-hidden transition-all duration-300">
+      <div class="flex flex-col gap-1 p-4">
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
+            <div class="flex items-center gap-4"><i class="fas fa-home w-6"></i><span>Home</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+            <a href="index.html" class="py-2 hover:text-accent font-medium">Home 1</a>
+            <a href="index2.html" class="py-2 hover:text-accent font-medium">Home 2</a>
+          </div>
+        </details>
+        <a href="events.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-calendar-alt text-accent w-6"></i> Events
+        </a>
+        <a href="about.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-info-circle text-accent w-6"></i> About
+        </a>
+        <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-envelope text-accent w-6"></i> Contact
+        </a>
+        <a href="attractions.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-gamepad text-accent w-6"></i> Attractions
+        </a>
+        <a href="pricing.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-ticket-alt text-accent w-6"></i> Pricing & Passes
+        </a>
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
+            <div class="flex items-center gap-4"><i class="fas fa-columns text-accent w-6"></i><span>Dashboard</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400 text-sm">
+            <a href="admin-dashboard.html" class="py-2 hover:text-accent">Admin Dashboard</a>
+            <a href="user-dashboard.html" class="py-2 hover:text-accent">User Dashboard</a>
+          </div>
+        </details>
+        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+          <button id="rtlToggleMobile"
+            class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+            <i class="fas fa-exchange-alt text-accent w-6"></i> Switch Direction (RTL)
+          </button>
+          <div class="mt-4 flex gap-3">
+
+            <!-- aCCOUNT -->
+            <a href="login.html"
+              class="flex-1 flex items-center justify-center gap-2 rounded-lg bg-accent py-4 text-lg font-medium text-white hover:opacity-90 transition-all shadow-md shadow-accent/20">
+              <i class="fas fa-user-circle"></i>
+              account
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<main class="min-h-screen">
+    <main class="min-h-screen">
+
+  <!-- ================= SECTION 1: HERO ================= -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-accent/10 via-white to-primary/10 dark:from-accent/5 dark:via-secondary dark:to-primary/5">
+    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl dark:bg-accent/10"></div>
+    <div class="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-primary/20 blur-3xl dark:bg-primary/10"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 py-16 md:py-24 xl:px-8">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <!-- Text Content -->
+        <div class="text-center lg:text-left">
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20">
+            <i class="fas fa-gamepad text-[10px]"></i> Our attractions
+          </span>
+          <h1 class="mb-5 text-4xl font-extrabold leading-tight tracking-tight text-secondary dark:text-white sm:text-5xl lg:text-6xl">
+            Endless <span class="text-accent">adventures</span> Under One <span class="text-primary">Roof</span>
+          </h1>
+          <p class="mx-auto mb-8 max-w-xl text-base leading-relaxed text-gray-600 dark:text-gray-300 lg:mx-0">
+            From soaring slides to creative corners - explore 10+ uniquely designed play zones that keep kids active, engaged, and smiling for hours.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+            <a href="pricing.html" class="inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-all hover:shadow-xl hover:shadow-accent/40 active:scale-95">
+              <i class="fas fa-ticket-alt"></i> Book Your Visit
+            </a>
+            <a href="#zones" class="inline-flex items-center gap-2 rounded-xl border-2 border-primary/30 bg-white/60 px-7 py-3.5 text-sm font-semibold text-primary backdrop-blur-sm transition-all hover:border-primary hover:bg-primary hover:text-white dark:bg-white/5 dark:border-primary/40">
+              <i class="fas fa-arrow-down"></i> Explore Zones
+            </a>
+          </div>
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-6 lg:justify-start">
+            <div class="flex items-center gap-2">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 text-accent dark:bg-accent/20">
+                <i class="fas fa-shield-alt text-sm"></i>
+              </span>
+              <span class="text-xs font-medium text-gray-600 dark:text-gray-400"><strong class="text-secondary dark:text-white">100%</strong> Safe &amp; Sanitized</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-primary dark:bg-primary/20">
+                <i class="fas fa-child text-sm"></i>
+              </span>
+              <span class="text-xs font-medium text-gray-600 dark:text-gray-400">ages <strong class="text-secondary dark:text-white">1-12</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="relative mx-auto w-full max-w-lg lg:max-w-none">
+          <div class="absolute inset-0 rotate-6 rounded-[2.5rem] bg-gradient-to-tr from-accent/30 to-primary/30 blur-2xl"></div>
+          <img
+            src="assets/gfe.jpg"
+            alt="Colorful indoor play zone with slides and climbing structures"
+            class="relative w-full rounded-[2.5rem] object-cover shadow-2xl shadow-accent/20 ring-4 ring-white/50 dark:ring-white/10"
+            style="aspect-ratio: 4/3;"
+          />
+          <div class="absolute -bottom-4 -right-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl dark:bg-darkGrey dark:border dark:border-white/10">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 text-accent dark:bg-accent/20">
+              <i class="fas fa-star"></i>
+            </span>
+            <div>
+              <p class="text-xs font-bold text-secondary dark:text-white">10+ Zones</p>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400">Something for Everyone</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 2: PLaY ZONES GRID ================= -->
+  <section id="zones" class="bg-white py-16 dark:bg-secondary md:py-24">
+    <div class="mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary dark:bg-primary/20">
+          Play Zones
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          Explore Our <span class="text-accent">Signature</span> Zones
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          Each zone is thoughtfully designed for different ages and energy levels.
+        </p>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Zone 1 -->
+        <div class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <div class="overflow-hidden">
+            <img src="assets/q1.jpg" alt="Toddler soft play zone" class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          </div>
+          <div class="p-6 text-center">
+            <span class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/15 text-primary dark:bg-primary/20">
+              <i class="fas fa-baby text-xl"></i>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Toddler Soft Play</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Cushioned floors, soft blocks, and mini slides for our youngest adventurers (ages 1-4).
+            </p>
+          </div>
+        </div>
+
+        <!-- Zone 2 -->
+        <div class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <div class="overflow-hidden">
+            <img src="assets/q2.jpg" alt="adventure climbing zone" class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          </div>
+          <div class="p-6 text-center">
+            <span class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent dark:bg-accent/20">
+              <i class="fas fa-mountain text-xl"></i>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">adventure Climb</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Multi-level climbing structures, tunnels, and spiral slides for fearless explorers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zone 3 -->
+        <div class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10 sm:col-span-2 lg:col-span-1">
+          <div class="overflow-hidden">
+            <img src="assets/q3.jpg" alt="Creative arts and crafts zone" class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          </div>
+          <div class="p-6 text-center">
+            <span class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/15 text-primary dark:bg-primary/20">
+              <i class="fas fa-paint-brush text-xl"></i>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Creative Corner</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              arts, crafts, and hands-on activities that nurture creativity and fine motor skills.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zone 4 -->
+        <div class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <div class="overflow-hidden">
+            <img src="assets/fd1.jpg" alt="Trampoline park zone" class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          </div>
+          <div class="p-6 text-center">
+            <span class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent dark:bg-accent/20">
+              <i class="fas fa-bolt text-xl"></i>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Trampoline Park</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Bounce, flip, and jump safely on our padded, professional-grade trampolines.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zone 5 -->
+        <div class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <div class="overflow-hidden">
+            <img src="assets/fd2.jpg" alt="Role play village zone" class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          </div>
+          <div class="p-6 text-center">
+            <span class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/15 text-primary dark:bg-primary/20">
+              <i class="fas fa-store text-xl"></i>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Role Play Village</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Mini supermarket, kitchen, and doctor's office for imaginative pretend play.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zone 6 -->
+        <div class="group overflow-hidden rounded-2xl bg-gray-50 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10 sm:col-span-2 lg:col-span-1">
+          <div class="overflow-hidden">
+            <img src="assets/fd3.jpg" alt="Ball pit arena zone" class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          </div>
+          <div class="p-6 text-center">
+            <span class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent dark:bg-accent/20">
+              <i class="fas fa-circle text-xl"></i>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Ball Pit arena</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Thousands of soft, sanitized balls for endless jumping, diving, and giggling.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 3: FEaTURED aTTRaCTION (SPOTLIGHT) ================= -->
+  <section class="relative overflow-hidden bg-gray-50 py-16 dark:bg-darkGrey md:py-24">
+    <div class="absolute top-0 right-0 h-72 w-72 rounded-full bg-accent/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20">
+          Featured attraction
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          The <span class="text-primary">Giant Spiral Slide</span>
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          Our most iconic attraction - a thrilling 3-story slide that ends in a giant ball pit.
+        </p>
+      </div>
+
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <!-- Image -->
+        <div class="relative order-2 lg:order-1">
+          <div class="absolute -inset-4 -rotate-3 rounded-3xl bg-gradient-to-tr from-accent/20 to-primary/20 blur-xl"></div>
+          <img
+            src="assets/er1.jpg"
+            alt="Giant spiral slide with ball pit"
+            class="relative w-full rounded-3xl object-cover shadow-xl ring-4 ring-white/50 dark:ring-white/10"
+            style="aspect-ratio: 4/3;"
+          />
+        </div>
+
+        <!-- Feature Details -->
+        <div class="order-1 space-y-6 lg:order-2">
+          <div class="flex items-start gap-4 text-center sm:text-left">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary dark:bg-primary/20">
+              <i class="fas fa-ruler-vertical text-lg"></i>
+            </span>
+            <div>
+              <h3 class="mb-1 text-base font-bold text-secondary dark:text-white">3 Stories High</h3>
+              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">a breathtaking drop that gives kids a safe adrenaline rush every time.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 text-center sm:text-left">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent dark:bg-accent/20">
+              <i class="fas fa-shield-alt text-lg"></i>
+            </span>
+            <div>
+              <h3 class="mb-1 text-base font-bold text-secondary dark:text-white">Fully Padded &amp; Safe</h3>
+              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">Soft padding throughout, with trained staff monitoring at all times.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 text-center sm:text-left">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary dark:bg-primary/20">
+              <i class="fas fa-circle text-lg"></i>
+            </span>
+            <div>
+              <h3 class="mb-1 text-base font-bold text-secondary dark:text-white">Ball Pit Landing</h3>
+              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">Ends in a giant ball pit filled with thousands of sanitized soft balls.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 text-center sm:text-left">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent dark:bg-accent/20">
+              <i class="fas fa-child text-lg"></i>
+            </span>
+            <div>
+              <h3 class="mb-1 text-base font-bold text-secondary dark:text-white">ages 4+</h3>
+              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">Recommended for children aged 4 and above who meet the height requirement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 4: SaFETY & COMFORT ================= -->
+  <section class="bg-white py-16 dark:bg-secondary md:py-24">
+    <div class="mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary dark:bg-primary/20">
+          Safety &amp; Comfort
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          Play with <span class="text-accent">Peace</span> of Mind
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          Your child's safety is our top priority - every detail has been carefully considered.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Feature 1 -->
+        <div class="group rounded-2xl bg-gray-50 p-8 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
+            <i class="fas fa-shield-virus text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Deep Cleaned Daily</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Every surface, ball, and toy is sanitized multiple times a day.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group rounded-2xl bg-gray-50 p-8 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
+            <i class="fas fa-user-shield text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Trained Supervisors</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">First-aid certified staff are always watching over the play areas.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group rounded-2xl bg-gray-50 p-8 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
+            <i class="fas fa-couch text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Parent Lounge</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Comfortable seating, free Wi-Fi, and a cafÃ© so you can relax.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="group rounded-2xl bg-gray-50 p-8 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-white/5 dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
+            <i class="fas fa-socks text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Socks Required</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Non-slip socks keep the play areas clean and prevent slips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 5: GaLLERY ================= -->
+  <section class="relative overflow-hidden bg-gray-50 py-16 dark:bg-darkGrey md:py-24">
+    <div class="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20">
+          Gallery
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          A Peek into the <span class="text-primary">Fun</span>
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          See our play zones in action - where memories are made every day.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Gallery 1 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-sm">
+          <img src="assets/df.jpg" alt="Kids playing in soft play area" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
+            <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Soft Play</p>
+          </div>
+        </div>
+
+        <!-- Gallery 2 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-sm">
+          <img src="assets/df2.jpg" alt="Child climbing adventure zone" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
+            <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Climbing Zone</p>
+          </div>
+        </div>
+
+        <!-- Gallery 3 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-sm">
+          <img src="assets/df3.jpg" alt="Trampoline park fun" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
+            <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Trampolines</p>
+          </div>
+        </div>
+
+        <!-- Gallery 4 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-sm">
+          <img src="assets/df4.jpg" alt="Creative corner arts and crafts" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
+            <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Creative Corner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 6: FINaL CTa ================= -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-24">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-white blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto max-w-4xl px-4 text-center xl:px-8">
+      <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+        <i class="fas fa-ticket-alt text-[10px]"></i> Book Your Visit
+      </span>
+      <h2 class="mb-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+        Ready to <span class="text-white/90">Explore</span> all Our attractions?
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/90">
+        Book your play session online and get 20% off your first visit. annual passes also available for unlimited fun.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="pricing.html" class="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-sm font-bold text-accent shadow-xl transition-all hover:shadow-2xl hover:scale-105 active:scale-95">
+          <i class="fas fa-calendar-check"></i> Book Now &amp; Save 20%
+        </a>
+        <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 bg-white/10 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white hover:text-accent">
+          <i class="fas fa-phone"></i> Contact Us
+        </a>
+      </div>
+      <p class="mt-6 text-xs text-white/70">
+        <i class="fas fa-clock mr-1"></i> Open Daily 9aM - 8PM &nbsp;Â·&nbsp;
+        <i class="fas fa-map-marker-alt mr-1"></i> 123 Playful ave, Funville
+      </p>
+    </div>
+  </section>
+
+</main>
+</main>
+
+  <footer class="bg-secondary pt-20 pb-10 text-white">
+    <div class="mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+
+        <div>
+          <a href="index.html" class="flex items-center gap-3 mb-6">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+              <i class="fas fa-shapes text-lg"></i>
+            </span>
+            <div class="leading-tight">
+              <span class="block text-xl font-medium tracking-tight text-accent">Kids Play Zone</span>
+              <span class="block text-[10px] text-gray-400 font-medium tracking-wide">Indoor Play & Party Center</span>
+            </div>
+          </a>
+          <p class="text-gray-400 mb-6">
+            The ultimate fun, colorful, and cheerful destination for indoor play, exciting attractions, and unforgettable birthday parties! 
+            
+          </p>
+          <div class="flex gap-3">
+            <a href="#"
+              class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="#"
+              class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i
+                class="fab fa-instagram"></i></a>
+            <a href="#"
+              class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i
+                class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-medium mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="index.html" class="block hover:text-accent transition-colors">Home</a></li>
+            <li><a href="attractions.html" class="block hover:text-accent transition-colors">Attractions</a></li>
+            <li><a href="pricing.html" class="block hover:text-accent transition-colors">Pricing & Passes</a></li>
+            <li><a href="about.html" class="block hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="block hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-medium mb-6">Get in Touch</h4>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-map-marker-alt text-accent"></i>
+              </div>
+              <div class="text-gray-400">
+                123 Playful ave, Funville<br>
+                United Kingdom
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-phone text-accent"></i>
+              </div>
+              <div class="text-gray-400">+91 80 1234 5678</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-envelope text-accent"></i>
+              </div>
+              <div class="text-gray-400">hello@kidsplayzone.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-medium mb-6">Join the Club</h4>
+          <p class="text-gray-400 mb-4">
+            Get updates on our latest attractions, special passes, and exclusive party deals.
+          </p>
+          <form class="space-y-4">
+            <input type="email" placeholder="Work email address"
+              class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-accent focus:outline-none text-white">
+            <button type="submit"
+              class="w-full bg-accent text-white font-medium py-3 rounded-lg hover:opacity-90 transition-colors">
+              Subscribe Now
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div>&copy; 2026 Kids Play Zone & Party Center. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-accent transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const l3 = document.getElementById('line3');
+
+    // Menu Toggle Logic
+    hamburger.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (!isHidden) {
+        l1.style.transform = 'translateY(8px) rotate(45deg)';
+        l2.style.opacity = '0';
+        l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+      } else {
+        l1.style.transform = 'none';
+        l2.style.opacity = '1';
+        l3.style.transform = 'none';
+      }
+    });
+
+    // Theme Logic
+    const themeBtns = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')];
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-sun"></i>');
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-moon"></i>');
+      }
+    }
+    themeBtns.forEach(btn => btn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark'))));
+    setTheme(localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // RTL Logic
+    const rtlBtns = [document.getElementById('rtlToggleDesktop'), document.getElementById('rtlToggleMobile')];
+    rtlBtns.forEach(btn => btn.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      bodyEl.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
+    }));
+
+    // Calculator Logic
+    function calculateCost() {
+      const sqft = document.getElementById('sqft').value;
+      const grade = document.getElementById('grade').value;
+      const total = document.getElementById('totalCost');
+
+      if (sqft > 0) {
+        const calculation = sqft * grade;
+        // animate number
+        let current = 0;
+        const step = calculation / 20;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= calculation) {
+            total.innerText = calculation.toLocaleString();
+            clearInterval(timer);
+          } else {
+            total.innerText = Math.floor(current).toLocaleString();
+          }
+        }, 30);
+      } else {
+        alert("Please enter a valid area size.");
+      }
+    }
+  </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const path = window.location.pathname.split('/').pop() || 'index.html';
+        
+        // Remove hardcoded active state from Home
+        const homeDesktop = document.querySelector('.home-trigger');
+        if (homeDesktop) {
+            homeDesktop.classList.remove('bg-accent', 'text-white', 'shadow-sm');
+            homeDesktop.classList.add('hover:text-primary', 'dark:hover:text-accent');
+        }
+        
+        const mobileSummaries = document.querySelectorAll('#mobileMenu summary');
+        mobileSummaries.forEach(summary => {
+            if (summary.textContent.includes('Home')) {
+                summary.classList.remove('bg-accent', 'text-white', 'shadow-md');
+                summary.classList.add('hover:bg-gray-50', 'dark:hover:bg-white/5');
+            }
+        });
+
+        // Find the matching link
+        const links = document.querySelectorAll('a[href="' + path + '"]');
+        links.forEach(link => {
+            // For desktop nav
+            if (link.closest('.hidden.xl\\:flex')) {
+                const dropdown = link.closest('.group');
+                if (dropdown && dropdown.querySelector('button')) {
+                    const btn = dropdown.querySelector('button');
+                    btn.classList.remove('hover:text-primary', 'dark:hover:text-accent');
+                    btn.classList.add('bg-accent', 'text-white', 'shadow-sm');
+                } else {
+                    link.classList.remove('hover:text-primary', 'dark:hover:text-accent');
+                    link.classList.add('bg-accent', 'text-white', 'shadow-sm');
+                }
+            }
+            
+            // For mobile nav
+            if (link.closest('#mobileMenu')) {
+                const details = link.closest('details');
+                if (details && details.querySelector('summary')) {
+                    const summary = details.querySelector('summary');
+                    summary.classList.remove('hover:bg-gray-50', 'dark:hover:bg-white/5');
+                    summary.classList.add('bg-accent', 'text-white', 'shadow-md');
+                } else {
+                    link.classList.remove('hover:bg-gray-50', 'dark:hover:bg-white/5');
+                    link.classList.add('bg-accent', 'text-white', 'shadow-md');
+                    const icon = link.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-accent');
+                        icon.classList.add('text-white');
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Kids Play Zone</title>
+    <link rel="icon" href="assets/fav.png" type="image/jpeg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9F1C',
+                        accent: '#8338EC',
+                        secondary: '#000000',
+                        darkGrey: '#111111'
+                    },
+                    fontFamily: {
+                        'display': ['Open Sans', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Open Sans', sans-serif; }
+
+        :root {
+            --c-primary: #FF9F1C;
+            --c-accent: #8338EC;
+            --c-bg: #ffffff;
+            --c-card: #ffffff;
+            --c-border: #f1f5f9;
+            --c-text: #000000;
+            --c-text-sec: #6b7280;
+            --c-hover: #f9fafb;
+        }
+        html.dark {
+            --c-bg: #000000;
+            --c-card: #111111;
+            --c-border: #27272a;
+            --c-text: #ffffff;
+            --c-text-sec: #a1a1aa;
+            --c-hover: #18181b;
+        }
+
+        body {
+            background-color: var(--c-bg);
+            color: var(--c-text);
+            transition: background-color 0.25s, color 0.25s;
+            overflow-x: hidden;
+        }
+
+        .text-p { color: var(--c-primary); }
+        .text-a { color: var(--c-accent); }
+        .text-sec { color: var(--c-text-sec); }
+        .bg-card { background-color: var(--c-card); }
+        .border-c { border-color: var(--c-border); }
+        .bg-hov { background-color: var(--c-hover); }
+
+        .bg-grad {
+            background: linear-gradient(135deg, #8338EC 0%, #FF9F1C 100%);
+        }
+        .bg-primary { background-color: var(--c-primary); }
+        .bg-accent { background-color: var(--c-accent); }
+
+        h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
+        p { font-weight: 400 !important; }
+
+        .dash-card {
+            background-color: var(--c-card);
+            border: 1px solid var(--c-border);
+            border-radius: 1.25rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.04);
+        }
+        .dash-card:hover {
+            border-color: var(--c-accent);
+            box-shadow: 0 12px 24px -8px rgba(131, 56, 236, 0.12);
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            color: var(--c-text-sec);
+            transition: all 0.18s ease;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            color: #FFFFFF;
+            background: linear-gradient(145deg, #8338EC, #FF9F1C);
+        }
+        .sidebar-link:hover i, .sidebar-link.active i { color: white !important; }
+        .sidebar-link.logout:hover { background: #d13b3b; color: white; }
+
+        [dir="rtl"] .sidebar-link { flex-direction: row-reverse; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        .badge-active { background-color: #10B981; color: white; }
+        .badge-pending { background-color: #F59E0B; color: white; }
+        .badge-confirmed { background-color: #3B82F6; color: white; }
+        .badge-completed { background-color: #10B981; color: white; }
+        .badge-cancelled { background-color: #EF4444; color: white; }
+        .badge-full { background-color: #8338EC; color: white; }
+
+        .status-pulse {
+            width: 10px; height: 10px;
+            background-color: var(--c-primary);
+            border-radius: 9999px;
+            box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.5);
+            animation: pulse2 2s infinite;
+        }
+        @keyframes pulse2 {
+            70% { box-shadow: 0 0 0 6px rgba(255, 159, 28, 0); }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF9F1C 0%, #8338EC 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 18px rgba(255, 159, 28, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--c-accent);
+            border: 2px solid var(--c-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--c-accent);
+            color: white;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--c-border);
+            border-radius: 10px;
+        }
+
+        #mobile-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            position: fixed;
+            inset: 0;
+            z-index: 55;
+        }
+        #mobile-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .admin-section { display: block; }
+
+        .toggle-switch {
+            width: 48px; height: 24px;
+            border-radius: 9999px;
+            padding: 2px;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        .toggle-switch.active { background: var(--c-primary); }
+        .toggle-switch.inactive { background: var(--c-border); }
+        .toggle-switch .knob {
+            width: 20px; height: 20px;
+            background: white;
+            border-radius: 9999px;
+            transition: transform 0.2s;
+        }
+        .toggle-switch.active .knob { transform: translateX(24px); }
+        [dir="rtl"] .toggle-switch.active .knob { transform: translateX(-24px); }
+
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--c-border);
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #FF9F1C, #8338EC);
+            transition: width 0.3s ease;
+        }
+
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--c-text-sec);
+            font-weight: 700;
+            border-bottom: 1px solid var(--c-border);
+        }
+        [dir="rtl"] .data-table th { text-align: right; }
+        .data-table td {
+            padding: 1rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover { background-color: var(--c-hover); }
+    </style>
+</head>
+<body class="antialiased h-screen overflow-hidden w-full overflow-x-hidden">
+
+    <!-- TOP BaR -->
+    <header class="border-b border-c bg-card sticky top-0 z-50 w-full">
+        <div class="max-w-[1920px] mx-auto px-2 sm:px-6 lg:px-10 py-3 flex items-center justify-between gap-1 sm:gap-3">
+
+            <div class="flex items-center gap-1 sm:gap-3">
+                <button id="mobile-menu-toggle"
+                    class="xl:hidden p-1.5 sm:p-2 -ml-1 sm:-ml-2 rounded-xl hover:bg-hov transition"
+                    title="Open Menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+                    <span class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shapes text-lg"></i>
+                    </span>
+                    <div class="leading-tight">
+                        <span class="block text-lg sm:text-xl font-medium tracking-tight text-a">Kids Play Zone</span>
+                        <span class="block text-[10px] text-gray-400 font-medium tracking-wide">Parent Dashboard</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-1 sm:gap-3 shrink-0 rtl:flex-row-reverse">
+                <div class="hidden md:flex items-center bg-hov rounded-full px-4 py-2 border border-c">
+                    <i class="fas fa-search text-sec text-sm mr-2"></i>
+                    <input type="text" placeholder="Search bookings..." class="bg-transparent border-none outline-none text-sm w-40 lg:w-56 placeholder:text-gray-400">
+                </div>
+
+                <button id="lang-toggle" class="p-2 rounded-full hover:bg-hov transition" title="Toggle RTL/LTR">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+
+                <button id="theme-toggle-user" class="p-2 rounded-full hover:bg-hov transition">
+                    <i class="fas fa-moon light-icon"></i>
+                    <i class="fas fa-sun dark-icon hidden"></i>
+                </button>
+
+                <div class="relative">
+                    <button class="p-2 rounded-full hover:bg-hov transition relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                </div>
+
+                <div class="relative flex items-center gap-2 pl-3 border-l border-c rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-3">
+                    <div class="relative flex-shrink-0">
+                        <span class="flex w-9 h-9 items-center justify-center rounded-full bg-primary/10 border-2 border-primary text-primary font-semibold text-xs">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="absolute bottom-0 right-0 status-pulse"></span>
+                    </div>
+                    <div class="hidden sm:block text-sm">
+                        <p class="font-semibold leading-none">Sarah Khan</p>
+                        <p class="text-[10px] text-sec mt-1 uppercase tracking-widest font-semibold">Parent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-overlay" class="xl:hidden"></div>
+
+    <!-- MaIN LaYOUT -->
+    <main class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10 py-6 h-[calc(100vh-64px)] w-full relative">
+        <div class="flex flex-col xl:flex-row gap-4 lg:gap-6 xl:gap-10 h-full">
+
+            <!-- SIDEBaR -->
+            <aside id="sidebar-container"
+                class="fixed xl:static top-0 left-0 rtl:right-0 rtl:left-auto h-full xl:h-auto w-72 lg:w-72 xl:w-80 z-[60] xl:z-10 transform -translate-x-full rtl:translate-x-full xl:translate-x-0 xl:rtl:translate-x-0 transition-transform duration-300 ease-in-out bg-card xl:bg-transparent flex-shrink-0">
+                <div class="dash-card p-5 h-full overflow-y-auto custom-scrollbar border-r xl:border border-c xl:rounded-[1.25rem] rounded-none shadow-none xl:shadow-md">
+
+                    <div class="flex xl:hidden justify-between items-center mb-6 px-2">
+                        <div class="flex items-center gap-2 text-a">
+                            <i class="fas fa-bars-staggered"></i>
+                            <span class="text-xs font-medium uppercase tracking-widest">My Menu</span>
+                        </div>
+                        <button id="close-sidebar" class="p-2 hover:bg-hov rounded-lg">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex xl:hidden items-center gap-3 mb-6 px-2 pb-6 border-b border-c">
+                        <span class="flex w-10 h-10 items-center justify-center rounded-full bg-primary/10 border-2 border-primary text-primary font-semibold">
+                            <i class="fas fa-user text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="font-semibold leading-tight">Sarah Khan</p>
+                            <p class="text-[10px] text-sec mt-0.5 uppercase tracking-widest font-medium">Parent</p>
+                        </div>
+                    </div>
+
+                    <nav class="flex flex-col gap-1">
+                        <p class="text-[10px] uppercase tracking-widest text-sec font-medium mt-2 mb-2 px-2">My Family</p>
+                        <a href="#" onclick="activateSection('overview'); return false;" data-section="overview" class="sidebar-link active">
+                            <i class="fas fa-house-chimney w-5"></i>
+                            <span>Dashboard Home</span>
+                        </a>
+                        <a href="#" onclick="activateSection('children'); return false;" data-section="children" class="sidebar-link">
+                            <i class="fas fa-child w-5"></i>
+                            <span>My Children</span>
+                        </a>
+
+                        <p class="text-[10px] uppercase tracking-widest text-sec font-medium mt-4 mb-2 px-2">Play</p>
+                        <a href="#" onclick="activateSection('book'); return false;" data-section="book" class="sidebar-link">
+                            <i class="fas fa-calendar-plus w-5"></i>
+                            <span>Book Session</span>
+                        </a>
+                        <a href="#" onclick="activateSection('bookings'); return false;" data-section="bookings" class="sidebar-link">
+                            <i class="fas fa-calendar-check w-5"></i>
+                            <span>My Bookings</span>
+                            <span class="ml-auto bg-primary/20 text-primary text-[10px] font-semibold px-1.5 py-0.5 rounded-full">3</span>
+                        </a>
+                        <a href="#" onclick="activateSection('parties'); return false;" data-section="parties" class="sidebar-link">
+                            <i class="fas fa-birthday-cake w-5"></i>
+                            <span>Birthday Parties</span>
+                        </a>
+
+                        <p class="text-[10px] uppercase tracking-widest text-sec font-medium mt-4 mb-2 px-2">Account</p>
+                        <a href="#" onclick="activateSection('passes'); return false;" data-section="passes" class="sidebar-link">
+                            <i class="fas fa-ticket-alt w-5"></i>
+                            <span>My Passes</span>
+                        </a>
+                        <a href="#" onclick="activateSection('payments'); return false;" data-section="payments" class="sidebar-link">
+                            <i class="fas fa-credit-card w-5"></i>
+                            <span>Payments</span>
+                        </a>
+                        <a href="#" onclick="activateSection('support'); return false;" data-section="support" class="sidebar-link">
+                            <i class="fas fa-headset w-5"></i>
+                            <span>Help & Support</span>
+                        </a>
+                        <a href="#" onclick="activateSection('settings'); return false;" data-section="settings" class="sidebar-link">
+                            <i class="fas fa-sliders w-5"></i>
+                            <span>Settings</span>
+                        </a>
+                        <a href="#" onclick="activateSection('logout'); return false;" class="sidebar-link logout mt-2 text-red-500">
+                            <i class="fas fa-power-off w-5"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </nav>
+
+                    <div class="mt-8 pt-4 border-t border-c">
+                        <p class="text-[10px] uppercase tracking-widest text-sec font-medium mb-3 px-1">Next Play Session</p>
+                        <div class="bg-hov rounded-xl p-3">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                <span class="text-xs font-semibold">Confirmed</span>
+                            </div>
+                            <p class="text-xs font-semibold">Toddler Soft Play</p>
+                            <p class="text-[11px] text-sec mt-1">Today · 3:30 PM</p>
+                            <div class="flex items-center gap-2 mt-2 pt-2 border-t border-c">
+                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-child text-primary text-[10px]"></i>
+                                </div>
+                                <span class="text-[11px] text-sec">For <strong>Emma &amp; Zara</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CONTENT aREa -->
+            <div class="flex-1 min-w-0 overflow-y-auto custom-scrollbar pr-2">
+
+                <!-- ==================== OVERVIEW ==================== -->
+                <div id="overview" class="admin-section">
+                    <div class="dash-card p-5 sm:p-7 reveal active mb-6 bg-grad text-white">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-semibold mb-2">Hi Sarah! ??</h2>
+                                <p class="text-white/85 text-sm max-w-xl">Emma and Zara have a play session today at 3:30 PM. You have 7 visits left on your 10-visit pass. Ready for another fun day?</p>
+                            </div>
+                            <div class="flex gap-2 flex-wrap">
+                                <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider">apr 09, 2026</span>
+                                <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fas fa-circle text-[6px]"></i> Multi-Visit Pass
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+                        <div class="dash-card p-6 reveal">
+                            <div class="flex justify-between items-start gap-4">
+                                <div>
+                                    <p class="text-sec text-xs uppercase tracking-wider font-medium">Upcoming Sessions</p>
+                                    <p class="text-3xl font-semibold mt-2">3</p>
+                                    <p class="text-primary text-xs font-medium mt-2 flex items-center gap-1">
+                                        <i class="fas fa-clock"></i> Next: Today 3:30 PM
+                                    </p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-calendar-check text-primary text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-c flex gap-4 text-xs">
+                                <span><span class="font-semibold">2</span> <span class="text-sec">this week</span></span>
+                                <span><span class="font-semibold">1</span> <span class="text-sec">next week</span></span>
+                            </div>
+                        </div>
+
+                        <div class="dash-card p-6 reveal">
+                            <div class="flex justify-between items-start gap-4">
+                                <div>
+                                    <p class="text-sec text-xs uppercase tracking-wider font-medium">Pass Balance</p>
+                                    <p class="text-3xl font-semibold mt-2">7<span class="text-base font-normal text-sec">/10</span></p>
+                                    <p class="text-primary text-xs font-medium mt-2 flex items-center gap-1">
+                                        <i class="fas fa-ticket-alt"></i> Visits remaining
+                                    </p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-ticket-alt text-accent text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-c">
+                                <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+                                <p class="text-[10px] text-sec mt-1.5 text-center">3 of 10 used</p>
+                            </div>
+                        </div>
+
+                        <div class="dash-card p-6 reveal">
+                            <div class="flex justify-between items-start gap-4">
+                                <div>
+                                    <p class="text-sec text-xs uppercase tracking-wider font-medium">Total Visits</p>
+                                    <p class="text-3xl font-semibold mt-2">28</p>
+                                    <p class="text-primary text-xs font-medium mt-2 flex items-center gap-1">
+                                        <i class="fas fa-arrow-up"></i> +5 this month
+                                    </p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-chart-line text-primary text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-c flex gap-4 text-xs">
+                                <span><span class="font-semibold">18</span> <span class="text-sec">Emma</span></span>
+                                <span><span class="font-semibold">10</span> <span class="text-sec">Zara</span></span>
+                            </div>
+                        </div>
+
+                        <div class="dash-card p-6 reveal">
+                            <div class="flex justify-between items-start gap-4">
+                                <div>
+                                    <p class="text-sec text-xs uppercase tracking-wider font-medium">Reward Points</p>
+                                    <p class="text-3xl font-semibold mt-2">420</p>
+                                    <p class="text-primary text-xs font-medium mt-2 flex items-center gap-1">
+                                        <i class="fas fa-gift"></i> 80 to next reward
+                                    </p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-star text-accent text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-c">
+                                <div class="progress-bar"><div class="progress-fill" style="width: 84%"></div></div>
+                                <p class="text-[10px] text-sec mt-1.5 text-center">420 of 500</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next session + activity -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <div class="dash-card p-6 lg:col-span-2 reveal">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-semibold text-lg">Next Session Details</h3>
+                                <span class="badge-active text-[10px]">Confirmed</span>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-5 items-start">
+                                <img src="https://images.unsplash.com/photo-1566454419290-57a64afe30ac?q=80&w=400&auto=format&fit=crop" alt="Toddler Soft Play" class="w-full sm:w-44 h-32 rounded-2xl object-cover">
+                                <div class="flex-1">
+                                    <p class="font-semibold text-lg">Toddler Soft Play Session</p>
+                                    <p class="text-xs text-sec mt-1">ages 1-4 · Cushioned zone with soft blocks and mini slides</p>
+                                    <div class="grid grid-cols-2 gap-3 mt-4">
+                                        <div>
+                                            <p class="text-[10px] text-sec uppercase tracking-wider">Date</p>
+                                            <p class="text-sm font-semibold">Today, apr 09</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] text-sec uppercase tracking-wider">Time</p>
+                                            <p class="text-sm font-semibold">3:30 PM - 5:30 PM</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] text-sec uppercase tracking-wider">Children</p>
+                                            <p class="text-sm font-semibold">Emma &amp; Zara</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] text-sec uppercase tracking-wider">Duration</p>
+                                            <p class="text-sm font-semibold">120 minutes</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-2 mt-5 flex-wrap">
+                                        <button class="px-4 py-2 btn-primary rounded-full text-xs font-semibold">Check In</button>
+                                        <button class="px-4 py-2 border border-c rounded-full text-xs font-semibold hover:bg-hov">Reschedule</button>
+                                        <button class="px-4 py-2 border border-c rounded-full text-xs font-semibold hover:bg-hov">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/20">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-circle-info text-primary mt-1"></i>
+                                    <div>
+                                        <p class="text-sm font-semibold">Before you come</p>
+                                        <p class="text-xs text-sec mt-1">Please bring socks for all children (available to purchase at the front desk). arrive 10 minutes early for check-in. Café is open for parents.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dash-card p-6 reveal">
+                            <h3 class="font-semibold text-lg mb-4">Recent activity</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold">Session completed</p>
+                                        <p class="text-xs text-sec">Emma &amp; Zara · 3 days ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-star text-blue-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold">Review submitted</p>
+                                        <p class="text-xs text-sec">5★ for Toddler zone · 4 days ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-calendar-plus text-amber-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold">Session booked</p>
+                                        <p class="text-xs text-sec">Today at 3:30 PM · 5 days ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-credit-card text-pink-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold">Pass purchased</p>
+                                        <p class="text-xs text-sec">10-Visit Pass · 2 weeks ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Explore zones -->
+                    <div class="dash-card p-6 reveal">
+                        <div class="flex justify-between items-center mb-5">
+                            <h3 class="font-semibold text-lg">Explore Our Play Zones</h3>
+                            <a href="attractions.html" class="text-xs text-a font-semibold hover:underline">View all</a>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                            <div class="border border-c rounded-2xl overflow-hidden group hover:shadow-lg transition-all">
+                                <div class="relative h-32 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1566454419290-57a64afe30ac?q=80&w=500&auto=format&fit=crop" alt="Toddler" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="font-semibold text-sm">Toddler Soft Play</h4>
+                                    <p class="text-xs text-sec mt-1">ages 1-4</p>
+                                    <div class="flex justify-between items-center mt-3">
+                                        <span class="text-primary font-bold text-sm">From $18</span>
+                                        <button onclick="activateSection('book'); return false;" class="text-xs btn-primary px-3 py-1.5 font-semibold">Book</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-c rounded-2xl overflow-hidden group hover:shadow-lg transition-all">
+                                <div class="relative h-32 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1575783970733-1aa2f0f0e0a4?q=80&w=500&auto=format&fit=crop" alt="adventure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="font-semibold text-sm">adventure Climb</h4>
+                                    <p class="text-xs text-sec mt-1">ages 5-12</p>
+                                    <div class="flex justify-between items-center mt-3">
+                                        <span class="text-primary font-bold text-sm">From $18</span>
+                                        <button onclick="activateSection('book'); return false;" class="text-xs btn-primary px-3 py-1.5 font-semibold">Book</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-c rounded-2xl overflow-hidden group hover:shadow-lg transition-all">
+                                <div class="relative h-32 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=500&auto=format&fit=crop" alt="Creative" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="font-semibold text-sm">Creative Corner</h4>
+                                    <p class="text-xs text-sec mt-1">ages 3-10</p>
+                                    <div class="flex justify-between items-center mt-3">
+                                        <span class="text-primary font-bold text-sm">From $18</span>
+                                        <button onclick="activateSection('book'); return false;" class="text-xs btn-primary px-3 py-1.5 font-semibold">Book</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-c rounded-2xl overflow-hidden group hover:shadow-lg transition-all">
+                                <div class="relative h-32 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=500&auto=format&fit=crop" alt="Trampoline" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="font-semibold text-sm">Trampoline Park</h4>
+                                    <p class="text-xs text-sec mt-1">ages 5-12</p>
+                                    <div class="flex justify-between items-center mt-3">
+                                        <span class="text-primary font-bold text-sm">From $18</span>
+                                        <button onclick="activateSection('book'); return false;" class="text-xs btn-primary px-3 py-1.5 font-semibold">Book</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MY CHILDREN ==================== -->
+                <div id="children" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2 class="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+                                <i class="fas fa-child text-a"></i> My Children
+                            </h2>
+                            <button class="px-6 py-3 btn-primary rounded-full text-xs font-bold uppercase tracking-widest">
+                                <i class="fas fa-plus mr-1"></i> add Child
+                            </button>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="dash-card p-6">
+                                <div class="flex items-start gap-4 mb-4">
+                                    <div class="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center text-primary text-2xl font-semibold shrink-0">E</div>
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-lg">Emma Khan</h3>
+                                        <p class="text-xs text-sec">age 5 · Toddler Group</p>
+                                        <div class="flex gap-2 mt-2 flex-wrap">
+                                            <span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">Soft Play</span>
+                                            <span class="text-[10px] bg-accent/10 text-accent px-2 py-0.5 rounded-full font-semibold">Creative</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm border-t border-c pt-4">
+                                    <div class="flex justify-between"><span class="text-sec">Total visits</span><span class="font-medium">18</span></div>
+                                    <div class="flex justify-between"><span class="text-sec">Favorite zone</span><span class="font-medium text-right">Toddler Soft Play</span></div>
+                                    <div class="flex justify-between"><span class="text-sec">Last visit</span><span class="font-medium text-right">apr 06, 2026</span></div>
+                                </div>
+                                <div class="flex gap-3 mt-5">
+                                    <button onclick="activateSection('book'); return false;" class="flex-1 py-2 btn-primary rounded-full text-xs font-semibold">Book Session</button>
+                                    <button class="px-4 py-2 border border-c rounded-full text-xs font-semibold hover:bg-hov"><i class="fas fa-pen"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dash-card p-6">
+                                <div class="flex items-start gap-4 mb-4">
+                                    <div class="w-16 h-16 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center text-accent text-2xl font-semibold shrink-0">Z</div>
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-lg">Zara Khan</h3>
+                                        <p class="text-xs text-sec">age 3 · Toddler Group</p>
+                                        <div class="flex gap-2 mt-2 flex-wrap">
+                                            <span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">Soft Play</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-sm border-t border-c pt-4">
+                                    <div class="flex justify-between"><span class="text-sec">Total visits</span><span class="font-medium">10</span></div>
+                                    <div class="flex justify-between"><span class="text-sec">Favorite zone</span><span class="font-medium text-right">Toddler Soft Play</span></div>
+                                    <div class="flex justify-between"><span class="text-sec">Last visit</span><span class="font-medium text-right">apr 06, 2026</span></div>
+                                </div>
+                                <div class="flex gap-3 mt-5">
+                                    <button onclick="activateSection('book'); return false;" class="flex-1 py-2 btn-primary rounded-full text-xs font-semibold">Book Session</button>
+                                    <button class="px-4 py-2 border border-c rounded-full text-xs font-semibold hover:bg-hov"><i class="fas fa-pen"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== BOOK SESSION ==================== -->
+                <div id="book" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2 class="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+                                <i class="fas fa-calendar-plus text-a"></i> Book a Play Session
+                            </h2>
+                            <span class="badge-active text-[10px] px-3 py-1.5 flex items-center gap-1">
+                                <i class="fas fa-ticket-alt"></i> 7 visits remaining
+                            </span>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div>
+                                <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Select Child</label>
+                                <select class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    <option>Emma Khan (age 5)</option>
+                                    <option>Zara Khan (age 3)</option>
+                                    <option>Both children</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Play Zone</label>
+                                <select class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    <option>Toddler Soft Play (ages 1-4)</option>
+                                    <option>adventure Climb (ages 5-12)</option>
+                                    <option>Creative Corner (ages 3-10)</option>
+                                    <option>Trampoline Park (ages 5-12)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Date</label>
+                                <input type="date" class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                            </div>
+                            <div>
+                                <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Preferred Time</label>
+                                <select class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    <option>9:30 aM - available</option>
+                                    <option>11:00 aM - available</option>
+                                    <option>1:30 PM - available</option>
+                                    <option>3:30 PM - available</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-hov rounded-2xl p-5 mb-6">
+                            <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-3">Special Requests</label>
+                            <div class="flex flex-wrap gap-4">
+                                <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="accent-primary"> Birthday party package</label>
+                                <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="accent-primary"> Café reservation</label>
+                                <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="accent-primary"> Extra socks rental</label>
+                            </div>
+                            <div class="mt-4">
+                                <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Notes for our team</label>
+                                <textarea class="w-full bg-card border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition" rows="3" placeholder="any allergies, special needs, or questions..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="bg-primary/5 border border-primary/20 rounded-2xl p-5 mb-6">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-circle-info text-primary mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-semibold">Session cost: <span class="text-primary text-lg">Will use 1 pass visit</span></p>
+                                    <p class="text-xs text-sec mt-1">Your Multi-Visit Pass covers this session. Cancel free up to 12 hours in advance.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="w-full py-4 btn-primary rounded-full text-sm font-semibold uppercase tracking-widest shadow-lg">
+                            <i class="fas fa-paper-plane mr-2"></i> Confirm Booking
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ==================== MY BOOKINGS ==================== -->
+                <div id="bookings" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2 class="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+                                <i class="fas fa-calendar-check text-a"></i> My Bookings
+                            </h2>
+                            <button onclick="activateSection('book'); return false;" class="px-6 py-3 btn-primary rounded-full text-xs font-bold uppercase tracking-widest">
+                                <i class="fas fa-plus mr-1"></i> New Booking
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                            <div class="bg-hov rounded-2xl p-4 text-center">
+                                <p class="text-2xl font-semibold text-primary">3</p>
+                                <p class="text-[10px] text-sec uppercase tracking-wider mt-1">Upcoming</p>
+                            </div>
+                            <div class="bg-hov rounded-2xl p-4 text-center">
+                                <p class="text-2xl font-semibold text-primary">28</p>
+                                <p class="text-[10px] text-sec uppercase tracking-wider mt-1">Completed</p>
+                            </div>
+                            <div class="bg-hov rounded-2xl p-4 text-center">
+                                <p class="text-2xl font-semibold text-primary">7</p>
+                                <p class="text-[10px] text-sec uppercase tracking-wider mt-1">Pass Balance</p>
+                            </div>
+                            <div class="bg-hov rounded-2xl p-4 text-center">
+                                <p class="text-2xl font-semibold text-primary">94%</p>
+                                <p class="text-[10px] text-sec uppercase tracking-wider mt-1">attendance</p>
+                            </div>
+                        </div>
+
+                        <h3 class="font-semibold text-lg mb-4">Upcoming Sessions</h3>
+                        <div class="space-y-4 mb-8">
+                            <div class="dash-card p-4 flex flex-col sm:flex-row gap-4">
+                                <img src="https://images.unsplash.com/photo-1566454419290-57a64afe30ac?q=80&w=400&auto=format&fit=crop" alt="Toddler" class="w-full sm:w-32 h-24 rounded-xl object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <p class="font-semibold text-sm">Toddler Soft Play</p>
+                                        <span class="badge-active text-[10px]">Confirmed</span>
+                                    </div>
+                                    <p class="text-xs text-sec mt-1"><i class="fas fa-calendar mr-1"></i> Today, apr 09 · 3:30 PM</p>
+                                    <p class="text-xs text-sec mt-1"><i class="fas fa-child mr-1"></i> Emma &amp; Zara</p>
+                                    <div class="flex justify-between items-center mt-3 flex-wrap gap-2">
+                                        <span class="text-sm font-bold text-primary">1 pass visit</span>
+                                        <div class="flex gap-2">
+                                            <button class="px-3 py-1.5 border border-c rounded-full text-xs font-semibold hover:bg-hov">Reschedule</button>
+                                            <button class="px-3 py-1.5 border border-c rounded-full text-xs font-semibold hover:bg-hov">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dash-card p-4 flex flex-col sm:flex-row gap-4">
+                                <img src="https://images.unsplash.com/photo-1575783970733-1aa2f0f0e0a4?q=80&w=400&auto=format&fit=crop" alt="adventure" class="w-full sm:w-32 h-24 rounded-xl object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <p class="font-semibold text-sm">adventure Climb</p>
+                                        <span class="badge-confirmed text-[10px]">Scheduled</span>
+                                    </div>
+                                    <p class="text-xs text-sec mt-1"><i class="fas fa-calendar mr-1"></i> apr 12 · 11:00 aM</p>
+                                    <p class="text-xs text-sec mt-1"><i class="fas fa-child mr-1"></i> Emma</p>
+                                    <div class="flex justify-between items-center mt-3 flex-wrap gap-2">
+                                        <span class="text-sm font-bold text-primary">1 pass visit</span>
+                                        <div class="flex gap-2">
+                                            <button class="px-3 py-1.5 border border-c rounded-full text-xs font-semibold hover:bg-hov">Reschedule</button>
+                                            <button class="px-3 py-1.5 border border-c rounded-full text-xs font-semibold hover:bg-hov">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dash-card p-4 flex flex-col sm:flex-row gap-4">
+                                <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=400&auto=format&fit=crop" alt="Creative" class="w-full sm:w-32 h-24 rounded-xl object-cover">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <p class="font-semibold text-sm">Creative Corner</p>
+                                        <span class="badge-confirmed text-[10px]">Scheduled</span>
+                                    </div>
+                                    <p class="text-xs text-sec mt-1"><i class="fas fa-calendar mr-1"></i> apr 15 · 2:00 PM</p>
+                                    <p class="text-xs text-sec mt-1"><i class="fas fa-child mr-1"></i> Zara</p>
+                                    <div class="flex justify-between items-center mt-3 flex-wrap gap-2">
+                                        <span class="text-sm font-bold text-primary">1 pass visit</span>
+                                        <div class="flex gap-2">
+                                            <button class="px-3 py-1.5 border border-c rounded-full text-xs font-semibold hover:bg-hov">Reschedule</button>
+                                            <button class="px-3 py-1.5 border border-c rounded-full text-xs font-semibold hover:bg-hov">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-semibold text-lg mb-4">Recent Sessions</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-hov rounded-xl text-sm">
+                                <span>apr 06, 2026 · Toddler Soft Play</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="badge-completed text-[10px]">Completed</span>
+                                    <span class="text-xs text-sec">120 min</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-hov rounded-xl text-sm">
+                                <span>apr 02, 2026 · adventure Climb</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="badge-completed text-[10px]">Completed</span>
+                                    <span class="text-xs text-sec">90 min</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-hov rounded-xl text-sm">
+                                <span>Mar 30, 2026 · Creative Corner</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="badge-completed text-[10px]">Completed</span>
+                                    <span class="text-xs text-sec">120 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== BIRTHDaY PaRTIES ==================== -->
+                <div id="parties" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2 class="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+                                <i class="fas fa-birthday-cake text-a"></i> Birthday Parties
+                            </h2>
+                            <button class="px-6 py-3 btn-primary rounded-full text-xs font-bold uppercase tracking-widest">
+                                <i class="fas fa-plus mr-1"></i> Book Party
+                            </button>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6 mb-8">
+                            <div class="dash-card p-6">
+                                <div class="flex items-start justify-between mb-3">
+                                    <span class="badge-confirmed text-[10px]">Standard</span>
+                                </div>
+                                <h3 class="font-semibold text-lg">Standard Party</h3>
+                                <p class="text-3xl font-semibold mt-3 text-primary">$450</p>
+                                <p class="text-xs text-sec mt-2">Up to 12 children · 3 hours</p>
+                                <ul class="space-y-2 mt-5 text-sm text-sec">
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Decorations included</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Cake + snacks</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Dedicated party host</li>
+                                </ul>
+                            </div>
+
+                            <div class="dash-card p-6 border-primary/40 relative">
+                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase">Popular</div>
+                                <div class="flex items-start justify-between mb-3">
+                                    <span class="badge-full text-[10px]">Premium</span>
+                                </div>
+                                <h3 class="font-semibold text-lg">Premium Party</h3>
+                                <p class="text-3xl font-semibold mt-3 text-primary">$890</p>
+                                <p class="text-xs text-sec mt-2">Up to 20 children · 3 hours</p>
+                                <ul class="space-y-2 mt-5 text-sm text-sec">
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Themed decorations</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Full buffet + cake</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> 2 party hosts</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Party favors for kids</li>
+                                </ul>
+                            </div>
+
+                            <div class="dash-card p-6">
+                                <div class="flex items-start justify-between mb-3">
+                                    <span class="badge-active text-[10px]">Deluxe</span>
+                                </div>
+                                <h3 class="font-semibold text-lg">Deluxe Party</h3>
+                                <p class="text-3xl font-semibold mt-3 text-primary">$650</p>
+                                <p class="text-xs text-sec mt-2">Up to 15 children · 3 hours</p>
+                                <ul class="space-y-2 mt-5 text-sm text-sec">
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Custom decorations</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Pizza + cake</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Dedicated host + assistant</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 class="font-semibold text-lg mb-4">My Party Bookings</h3>
+                        <div class="space-y-3">
+                            <div class="dash-card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                                        <i class="fas fa-birthday-cake text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm">Emma's 6th Birthday Party</p>
+                                        <p class="text-xs text-sec mt-1">apr 12, 2026 · 2:00 PM - 5:00 PM · Deluxe Package</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="badge-confirmed text-[10px]">Confirmed</span>
+                                    <span class="text-sm font-semibold text-primary">$650</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MY PaSSES ==================== -->
+                <div id="passes" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2 class="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+                                <i class="fas fa-ticket-alt text-a"></i> My Passes
+                            </h2>
+                            <button class="px-6 py-3 btn-primary rounded-full text-xs font-bold uppercase tracking-widest">
+                                <i class="fas fa-plus mr-1"></i> Buy Pass
+                            </button>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="dash-card p-6 border-primary/40">
+                                <div class="flex items-start justify-between mb-3">
+                                    <span class="badge-full text-[10px]">active</span>
+                                    <span class="text-xs text-sec">Purchased apr 01</span>
+                                </div>
+                                <h3 class="font-semibold text-lg">10-Visit Pass</h3>
+                                <p class="text-3xl font-semibold mt-3 text-primary">7<span class="text-base font-normal text-sec">/10</span></p>
+                                <p class="text-xs text-sec mt-2">Visits remaining</p>
+                                <div class="mt-4 progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+                                <div class="mt-4 pt-3 border-t border-c">
+                                    <p class="text-xs text-sec">Expires Sep 01, 2026</p>
+                                </div>
+                            </div>
+
+                            <div class="dash-card p-6">
+                                <div class="flex items-start justify-between mb-3">
+                                    <span class="badge-confirmed text-[10px]">History</span>
+                                    <span class="text-xs text-sec">2025</span>
+                                </div>
+                                <h3 class="font-semibold text-lg">Day Pass x3</h3>
+                                <p class="text-3xl font-semibold mt-3 text-primary">Used</p>
+                                <p class="text-xs text-sec mt-2">all previous single visits</p>
+                                <div class="mt-4 pt-3 border-t border-c">
+                                    <p class="text-xs text-sec">Used on Dec 2025</p>
+                                </div>
+                            </div>
+
+                            <div class="dash-card p-6 border-dashed">
+                                <div class="flex items-start justify-between mb-3">
+                                    <span class="badge-pending text-[10px]">New</span>
+                                </div>
+                                <h3 class="font-semibold text-lg">annual Membership</h3>
+                                <p class="text-3xl font-semibold mt-3 text-primary">$499</p>
+                                <p class="text-xs text-sec mt-2">Unlimited play + 2 free parties</p>
+                                <button class="w-full mt-5 py-2.5 btn-primary rounded-full text-xs font-semibold">Upgrade Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== PaYMENTS ==================== -->
+                <div id="payments" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                            <h2 class="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+                                <i class="fas fa-credit-card text-a"></i> Payments & Billing
+                            </h2>
+                            <button class="px-6 py-3 btn-primary rounded-full text-xs font-bold uppercase tracking-widest">
+                                <i class="fas fa-plus mr-1"></i> add Card
+                            </button>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-grad rounded-2xl p-6 text-white">
+                                <p class="text-white/70 text-xs uppercase tracking-wider font-semibold">Upcoming Payment</p>
+                                <p class="text-4xl font-semibold mt-1">$650.00</p>
+                                <p class="text-white/70 text-xs mt-2">Due apr 12, 2026 · Party Package</p>
+                                <button class="mt-4 bg-white text-accent font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest hover:scale-105 transition">
+                                    Pay Now
+                                </button>
+                            </div>
+                            <div class="dash-card p-6">
+                                <p class="text-sec text-xs uppercase tracking-wider font-semibold mb-4">This Year's Spending</p>
+                                <div class="flex items-baseline gap-3">
+                                    <p class="text-4xl font-semibold text-primary">$1,240</p>
+                                    <span class="text-sm text-primary flex items-center gap-1"><i class="fas fa-arrow-up"></i> +$140</span>
+                                </div>
+                                <div class="mt-5 pt-4 border-t border-c grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-xs text-sec">Total visits</p>
+                                        <p class="font-semibold text-base">28</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-sec">avg. per visit</p>
+                                        <p class="font-semibold text-base">$44</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-semibold text-lg mb-4">Saved Payment Methods</h3>
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center justify-between p-4 bg-hov rounded-2xl">
+                                <div class="flex items-center gap-4">
+                                    <i class="fab fa-cc-visa text-3xl text-primary"></i>
+                                    <div>
+                                        <p class="font-semibold text-sm">Visa ending in 4242</p>
+                                        <p class="text-xs text-sec">Expires 08/2028</p>
+                                    </div>
+                                </div>
+                                <span class="badge-active text-[10px]">Default</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-hov rounded-2xl">
+                                <div class="flex items-center gap-4">
+                                    <i class="fab fa-cc-mastercard text-3xl text-primary"></i>
+                                    <div>
+                                        <p class="font-semibold text-sm">Mastercard ending in 8890</p>
+                                        <p class="text-xs text-sec">Expires 11/2027</p>
+                                    </div>
+                                </div>
+                                <button class="text-sec hover:text-primary p-2"><i class="fas fa-ellipsis-vertical"></i></button>
+                            </div>
+                        </div>
+
+                        <h3 class="font-semibold text-lg mb-4">Recent Transactions</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-hov rounded-xl text-sm">
+                                <span>apr 06, 2026 · Toddler Soft Play (Emma &amp; Zara)</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-semibold text-primary">1 pass visit</span>
+                                    <span class="badge-completed text-[10px]">Covered</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-hov rounded-xl text-sm">
+                                <span>apr 01, 2026 · 10-Visit Pass</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-semibold">$140.00</span>
+                                    <span class="badge-completed text-[10px]">Paid</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-hov rounded-xl text-sm">
+                                <span>apr 12, 2026 · Emma's Birthday Party</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-semibold">$650.00</span>
+                                    <span class="badge-pending text-[10px]">Due</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== SUPPORT ==================== -->
+                <div id="support" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <h2 class="text-xl sm:text-2xl font-semibold mb-2 flex items-center gap-2">
+                            <i class="fas fa-headset text-a"></i> Help & Support
+                        </h2>
+                        <p class="text-sec text-sm mb-8">Our team is here to help you make the most of your visit. Reach out anytime.</p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-hov rounded-2xl p-6 text-center">
+                                <div class="w-14 h-14 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h3 class="font-semibold text-lg mb-2">Call Our Front Desk</h3>
+                                <p class="text-sm text-sec mb-4">available during opening hours 9aM - 8PM daily.</p>
+                                <a href="tel:+918012345678" class="text-primary font-semibold">+91 80 1234 5678</a>
+                            </div>
+                            <div class="bg-hov rounded-2xl p-6 text-center">
+                                <div class="w-14 h-14 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h3 class="font-semibold text-lg mb-2">Email Support</h3>
+                                <p class="text-sm text-sec mb-4">We respond within 2 hours during business hours.</p>
+                                <a href="mailto:hello@kidsplayzone.com" class="text-primary font-semibold">hello@kidsplayzone.com</a>
+                            </div>
+                        </div>
+
+                        <h3 class="font-semibold text-lg mb-4">Frequently asked Questions</h3>
+                        <div class="space-y-3">
+                            <details class="bg-hov rounded-2xl p-4 cursor-pointer">
+                                <summary class="font-semibold text-sm">What should my child wear to the play zone?</summary>
+                                <p class="text-xs text-sec mt-3">Comfortable clothes and non-slip socks are required. We sell socks at the front desk if you forget. Long hair should be tied back for safety.</p>
+                            </details>
+                            <details class="bg-hov rounded-2xl p-4 cursor-pointer">
+                                <summary class="font-semibold text-sm">Can I reschedule or cancel a booking?</summary>
+                                <p class="text-xs text-sec mt-3">Yes, free rescheduling and cancellation up to 12 hours before your session from the "My Bookings" tab. Late cancellations consume 1 visit from your pass.</p>
+                            </details>
+                            <details class="bg-hov rounded-2xl p-4 cursor-pointer">
+                                <summary class="font-semibold text-sm">Is there a café at the play zone?</summary>
+                                <p class="text-xs text-sec mt-3">Yes! Our parent café serves coffee, snacks, and healthy options. Free WiFi is available for parents while children play.</p>
+                            </details>
+                            <details class="bg-hov rounded-2xl p-4 cursor-pointer">
+                                <summary class="font-semibold text-sm">How do birthday party bookings work?</summary>
+                                <p class="text-xs text-sec mt-3">Choose a package, pick a date, and our party coordinator will contact you within 24 hours to plan all the details including decorations, food, and activities.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== SETTINGS ==================== -->
+                <div id="settings" class="admin-section hidden">
+                    <div class="dash-card p-5 sm:p-7 reveal active">
+                        <h2 class="text-xl sm:text-2xl font-semibold mb-8 flex items-center gap-2">
+                            <i class="fas fa-sliders text-a"></i> Account Settings
+                        </h2>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="font-semibold text-lg mb-4 pb-2 border-b border-c">Personal Information</h3>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Full Name</label>
+                                        <input type="text" value="Sarah Khan" class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Email</label>
+                                        <input type="email" value="sarah.khan@example.com" class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Phone</label>
+                                        <input type="tel" value="+91 98765 43210" class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs uppercase tracking-wider font-semibold text-sec block mb-2">Emergency Contact</label>
+                                        <input type="text" value="Ravi Khan · +91 98765 43211" class="w-full bg-hov border border-c rounded-xl px-4 py-3 outline-none focus:border-primary transition">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="font-semibold text-lg mb-4 pb-2 border-b border-c">Notifications</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 bg-hov rounded-2xl">
+                                        <div>
+                                            <p class="font-semibold text-sm">Session reminders</p>
+                                            <p class="text-xs text-sec mt-1">Get notified 2 hours before each play session</p>
+                                        </div>
+                                        <div class="toggle-switch active" onclick="this.classList.toggle('active'); this.classList.toggle('inactive');">
+                                            <div class="knob"></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-4 bg-hov rounded-2xl">
+                                        <div>
+                                            <p class="font-semibold text-sm">Party updates</p>
+                                            <p class="text-xs text-sec mt-1">Receive updates about your party bookings</p>
+                                        </div>
+                                        <div class="toggle-switch active" onclick="this.classList.toggle('active'); this.classList.toggle('inactive');">
+                                            <div class="knob"></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between p-4 bg-hov rounded-2xl">
+                                        <div>
+                                            <p class="font-semibold text-sm">Special offers &amp; events</p>
+                                            <p class="text-xs text-sec mt-1">Early access to new attractions and deals</p>
+                                        </div>
+                                        <div class="toggle-switch inactive" onclick="this.classList.toggle('active'); this.classList.toggle('inactive');">
+                                            <div class="knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 flex gap-4">
+                                <button class="btn-primary px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl">Save Changes</button>
+                                <button class="btn-outline px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== LOGOUT ==================== -->
+                <div id="logout" class="admin-section hidden">
+                    <div class="dash-card p-10 reveal active text-center max-w-lg mx-auto border-red-500/20">
+                        <div class="w-20 h-20 mx-auto bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center text-red-500 text-3xl mb-6">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold">Log out of Kids Play Zone?</h2>
+                        <p class="text-sec mt-3 text-sm leading-relaxed">You will need to sign in again to manage your children's bookings and passes.</p>
+                        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="login.html">
+                                <button class="bg-red-500 hover:bg-red-600 text-white font-bold uppercase tracking-widest px-8 py-3 rounded-full text-[10px] transition shadow-lg">
+                                    Log Out
+                                </button>
+                            </a>
+                            <button onclick="activateSection('overview'); return false;" class="bg-hov border border-c px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRUST BaNNER -->
+                <div class="bg-grad rounded-3xl p-6 sm:p-8 mt-10 text-white reveal flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                    <div class="flex items-center gap-4 text-center sm:text-left">
+                        <span class="w-3 h-3 bg-white rounded-full animate-ping flex-shrink-0"></span>
+                        <div>
+                            <p class="font-semibold text-lg tracking-tight">Where Kids Play, Laugh &amp; Grow</p>
+                            <p class="text-xs text-white/85">Safe &amp; sanitized daily · Trained supervisors · Café for parents</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-white/20 backdrop-blur-md px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest">5,000+ Happy Kids</span>
+                    </div>
+                </div>
+
+                <!-- FOOTER -->
+                <footer class="mt-12 text-center text-[10px] text-sec border-t border-c pt-8 pb-12 w-full">
+                    <p class="uppercase tracking-[0.3em] font-semibold opacity-40">© 2026 Kids Play Zone &amp; Party Center · Parent Dashboard v1.0</p>
+                    <div class="flex justify-center gap-8 mt-4 font-semibold uppercase opacity-60 flex-wrap">
+                        <span class="hover:text-accent cursor-pointer transition">Privacy</span>
+                        <span class="hover:text-accent cursor-pointer transition">Terms</span>
+                        <span class="hover:text-accent cursor-pointer transition">Safety</span>
+                        <span class="hover:text-accent cursor-pointer transition">Contact</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <!-- MOBILE DRaWER -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-card rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
+            <div class="flex justify-between items-center pb-4 border-b border-c">
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+                        <i class="fas fa-shapes text-lg"></i>
+                    </span>
+                    <div class="leading-tight">
+                        <span class="block text-lg font-medium tracking-tight text-a">Kids Play Zone</span>
+                        <span class="block text-[10px] text-gray-400 font-medium tracking-wide">Parent Dashboard</span>
+                    </div>
+                </a>
+                <button id="mobile-menu-close" class="text-sec hover:text-accent"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <nav class="flex flex-col space-y-2 py-4">
+                <a href="#" onclick="activateSection('overview'); return false;" class="block font-semibold text-lg py-2">Dashboard Home</a>
+                <a href="#" onclick="activateSection('children'); return false;" class="block font-semibold text-lg py-2">My Children</a>
+                <a href="#" onclick="activateSection('book'); return false;" class="block font-semibold text-lg py-2">Book Session</a>
+                <a href="#" onclick="activateSection('bookings'); return false;" class="block font-semibold text-lg py-2">My Bookings</a>
+                <a href="#" onclick="activateSection('parties'); return false;" class="block font-semibold text-lg py-2">Birthday Parties</a>
+                <a href="#" onclick="activateSection('passes'); return false;" class="block font-semibold text-lg py-2">My Passes</a>
+                <a href="#" onclick="activateSection('payments'); return false;" class="block font-semibold text-lg py-2">Payments</a>
+                <a href="#" onclick="activateSection('support'); return false;" class="block font-semibold text-lg py-2">Help &amp; Support</a>
+                <a href="#" onclick="activateSection('settings'); return false;" class="block font-semibold text-lg py-2">Settings</a>
+                <a href="#" onclick="activateSection('logout'); return false;" class="block text-red-500 font-semibold text-lg py-2">Log Out</a>
+            </nav>
+            <div class="pt-4 border-t border-c mt-4 flex justify-around items-center">
+                <button id="mobile-lang-icon-drawer" class="flex flex-col items-center"><i class="fas fa-exchange-alt"></i><span class="text-xs mt-1 text-sec">RTL</span></button>
+                <button id="drawer-theme-toggle" class="flex flex-col items-center">
+                    <i class="fas fa-moon light-icon"></i>
+                    <i class="fas fa-sun dark-icon hidden"></i>
+                    <span class="text-xs mt-1 text-sec">Theme</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const html = document.documentElement;
+
+            // Sidebar
+            const sidebar = document.getElementById('sidebar-container');
+            const overlay = document.getElementById('mobile-overlay');
+
+            window.toggleMobileMenu = function(isOpen) {
+                if (isOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            };
+            document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => toggleMobileMenu(true));
+            document.getElementById('close-sidebar')?.addEventListener('click', () => toggleMobileMenu(false));
+            overlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+            // Mobile drawer
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const menuContent = document.getElementById('drawer-content');
+            const menuBackdrop = document.getElementById('drawer-backdrop');
+            window.closeDrawer = () => {
+                menuContent.classList.add('translate-y-[-100%]');
+                menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+                setTimeout(() => { menuDrawer.classList.add('pointer-events-none'); document.body.style.overflow = ''; }, 300);
+            };
+
+            // Theme
+            const themeToggles = [document.getElementById('theme-toggle-user'), document.getElementById('drawer-theme-toggle')];
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                if (theme === 'dark') html.classList.add('dark'); else html.classList.remove('dark');
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            };
+            themeToggles.forEach(btn => {
+                btn?.addEventListener('click', () => {
+                    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                    localStorage.setItem('theme', next);
+                    applyTheme(next);
+                });
+            });
+            applyTheme(localStorage.getItem('theme') || 'light');
+
+            // RTL
+            const langToggles = [document.getElementById('lang-toggle'), document.getElementById('mobile-lang-icon-drawer')];
+            langToggles.forEach(btn => btn?.addEventListener('click', () => {
+                const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
+                localStorage.setItem('language', current);
+                html.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
+            }));
+            html.setAttribute('dir', localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+
+            // Section switching
+            const sections = ['overview', 'children', 'book', 'bookings', 'parties', 'passes', 'payments', 'support', 'settings', 'logout'];
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+            window.activateSection = function (sectionId) {
+                sections.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+                const activeEl = document.getElementById(sectionId);
+                if (activeEl) {
+                    activeEl.classList.remove('hidden');
+                    activeEl.classList.add('active');
+                }
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === sectionId) link.classList.add('active');
+                });
+                if (window.innerWidth < 1280) {
+                    toggleMobileMenu(false);
+                    closeDrawer();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            };
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (this.dataset.section) activateSection(this.dataset.section);
+                });
+            });
+
+            // Reveal
+            function checkReveal() {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+                });
+            }
+            window.addEventListener('scroll', checkReveal);
+            window.addEventListener('load', checkReveal);
+
+            activateSection('overview');
+        })();
+    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const path = window.location.pathname.split('/').pop() || 'index.html';
+        
+        // Remove hardcoded active state from Home
+        const homeDesktop = document.querySelector('.home-trigger');
+        if (homeDesktop) {
+            homeDesktop.classList.remove('bg-accent', 'text-white', 'shadow-sm');
+            homeDesktop.classList.add('hover:text-primary', 'dark:hover:text-accent');
+        }
+        
+        const mobileSummaries = document.querySelectorAll('#mobileMenu summary');
+        mobileSummaries.forEach(summary => {
+            if (summary.textContent.includes('Home')) {
+                summary.classList.remove('bg-accent', 'text-white', 'shadow-md');
+                summary.classList.add('hover:bg-gray-50', 'dark:hover:bg-white/5');
+            }
+        });
+
+        // Find the matching link
+        const links = document.querySelectorAll('a[href="' + path + '"]');
+        links.forEach(link => {
+            // For desktop nav
+            if (link.closest('.hidden.xl\\:flex')) {
+                const dropdown = link.closest('.group');
+                if (dropdown && dropdown.querySelector('button')) {
+                    const btn = dropdown.querySelector('button');
+                    btn.classList.remove('hover:text-primary', 'dark:hover:text-accent');
+                    btn.classList.add('bg-accent', 'text-white', 'shadow-sm');
+                } else {
+                    link.classList.remove('hover:text-primary', 'dark:hover:text-accent');
+                    link.classList.add('bg-accent', 'text-white', 'shadow-sm');
+                }
+            }
+            
+            // For mobile nav
+            if (link.closest('#mobileMenu')) {
+                const details = link.closest('details');
+                if (details && details.querySelector('summary')) {
+                    const summary = details.querySelector('summary');
+                    summary.classList.remove('hover:bg-gray-50', 'dark:hover:bg-white/5');
+                    summary.classList.add('bg-accent', 'text-white', 'shadow-md');
+                } else {
+                    link.classList.remove('hover:bg-gray-50', 'dark:hover:bg-white/5');
+                    link.classList.add('bg-accent', 'text-white', 'shadow-md');
+                    const icon = link.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-accent');
+                        icon.classList.add('text-white');
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

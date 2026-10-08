@@ -1,0 +1,986 @@
+ <!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Play Zone | Indoor Play & Party Center</title>
+  <link rel="icon" href="assets/fav.png" type="image/jpeg">
+  <meta name="description"
+    content="Welcome to our colorful, cheerful Kids Indoor Play Zone & Party Center. Book play sessions, get passes, and host unforgettable birthday parties!">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF477E',    // (Playful Pink)
+            accent: '#8338EC',     // (Vibrant Purple)
+            secondary: '#000000',  // Black
+            darkGrey: '#111111'    // Dark Grey
+          },
+          fontFamily: {
+            'display': ['Open Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    [dir="rtl"] .rtl-flip {
+      transform: scaleX(-1);
+    }
+
+    #mobileMenu {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .before-after-card:hover .after-image {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .after-image {
+      clip-path: inset(0 0 0 100%);
+      transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 overflow-x-hidden"
+  data-dir="ltr">
+
+  <nav id="navbar"
+    class="sticky top-0 z-50 transition-colors duration-300 bg-white text-secondary border-b border-gray-100 dark:bg-secondary dark:text-white dark:border-white/10 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 xl:px-8">
+      <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+        <span
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fas fa-shapes text-lg"></i> </span>
+
+        <div class="leading-tight">
+          <span class="block text-xl font-medium tracking-tight text-accent">Kids Play Zone</span>
+          <span class="block text-[10px] text-gray-400 font-medium tracking-wide">Indoor Play & Party Center</span>
+        </div>
+      </a>
+      <div class="hidden xl:flex items-center gap-2">
+        <ul class="flex items-center gap-0.5 text-xs font-medium">
+
+          <!-- Home Dropdown -->
+          <li class="relative group">
+            <button class="home-trigger flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent font-medium transition-colors">
+              <span>Home</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-44 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="index.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 1</a></li>
+              <li><a href="index2.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 2</a></li>
+            </ul>
+          </li>
+
+          <!-- Gallery -->
+          <li><a href="events.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Events</a></li>
+
+          <!-- about -->
+          <li><a href="about.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
+
+          <!-- Contact -->
+          <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+
+          <!-- attractions -->
+          <li><a href="attractions.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Attractions</a></li>
+
+          <!-- Pricing & Passes -->
+          <li><a href="pricing.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Pricing & Passes</a></li>
+
+          <!-- Dashboard Dropdown -->
+          <li class="relative group">
+            <button class="flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors font-medium">
+              <span>Dashboard</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-60 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="admin-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">Admin Dashboard</a></li>
+              <li><a href="user-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">User Dashboard</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
+          <button id="themeToggleDesktop"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="rtlToggleDesktop"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <div class="ml-2 flex items-center gap-2">
+
+            <!-- account Button -->
+            <a href="login.html"
+              class="inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-1.5 text-xs font-medium text-white hover:opacity-90 transition-transform active:scale-95 shadow-md shadow-accent/20">
+              <i class="fas fa-user-circle text-sm"></i>
+              <span>Account</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 xl:hidden">
+        <button id="themeToggleMobile"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-white/10">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="hamburger"
+          class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md bg-gray-100 dark:bg-white/5"
+          aria-label="Toggle Menu">
+          <span id="line1" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line2" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line3" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu"
+      class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 xl:hidden overflow-hidden transition-all duration-300">
+      <div class="flex flex-col gap-1 p-4">
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
+            <div class="flex items-center gap-4"><i class="fas fa-home w-6"></i><span>Home</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+            <a href="index.html" class="py-2 hover:text-accent font-medium">Home 1</a>
+            <a href="index2.html" class="py-2 hover:text-accent font-medium">Home 2</a>
+          </div>
+        </details>
+        <a href="events.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-calendar-alt text-accent w-6"></i> Events
+        </a>
+        <a href="about.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-info-circle text-accent w-6"></i> About
+        </a>
+        <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-envelope text-accent w-6"></i> Contact
+        </a>
+        <a href="attractions.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-gamepad text-accent w-6"></i> Attractions
+        </a>
+        <a href="pricing.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-ticket-alt text-accent w-6"></i> Pricing & Passes
+        </a>
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
+            <div class="flex items-center gap-4"><i class="fas fa-columns text-accent w-6"></i><span>Dashboard</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400 text-sm">
+            <a href="admin-dashboard.html" class="py-2 hover:text-accent">Admin Dashboard</a>
+            <a href="user-dashboard.html" class="py-2 hover:text-accent">User Dashboard</a>
+          </div>
+        </details>
+        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+          <button id="rtlToggleMobile"
+            class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+            <i class="fas fa-exchange-alt text-accent w-6"></i> Switch Direction (RTL)
+          </button>
+          <div class="mt-4 flex gap-3">
+
+            <!-- aCCOUNT -->
+            <a href="login.html"
+              class="flex-1 flex items-center justify-center gap-2 rounded-lg bg-accent py-4 text-lg font-medium text-white hover:opacity-90 transition-all shadow-md shadow-accent/20">
+              <i class="fas fa-user-circle"></i>
+              account
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+<main class="min-h-screen">
+
+  <!-- ================= SECTION 1: HERO (SPLIT SCREEN) ================= -->
+  <section class="relative min-h-[90vh] overflow-hidden bg-secondary dark:bg-black">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0">
+      <img
+        src="assets/h1.jpg"
+        alt="Kids birthday party celebration with balloons"
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/80 to-accent/40 dark:from-black/95 dark:via-black/85 dark:to-accent/30"></div>
+    </div>
+
+    <!-- Split Content -->
+    <div class="relative mx-auto flex min-h-[90vh] max-w-7xl items-center px-4 py-20 xl:px-8">
+      <div class="grid w-full items-center gap-12 lg:grid-cols-5 lg:gap-8">
+        <!-- Left: Big Text -->
+        <div class="text-center lg:col-span-3 lg:text-left">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md">
+            <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-white">Now Booking 2026 Parties</span>
+          </div>
+          <h1 class="mb-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl">
+            Throw the <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Best Party</span> They'll Ever Remember
+          </h1>
+          <p class="mx-auto mb-8 max-w-xl text-base leading-relaxed text-gray-300 lg:mx-0">
+            Private party rooms, themed decorations, catering, entertainment, and a dedicated host - all under one roof. You bring the guests, we handle the magic.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+            <a href="#packages" class="group inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-4 text-sm font-bold text-white shadow-2xl shadow-primary/40 transition-all hover:shadow-primary/60 hover:scale-105 active:scale-95">
+              <i class="fas fa-calendar-check"></i> Book Your Party
+              <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+            </a>
+            <a href="pricing.html" class="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/5 px-8 py-4 text-sm font-bold text-white backdrop-blur-md transition-all hover:bg-white hover:text-secondary">
+              <i class="fas fa-tags"></i> View Pricing
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Floating Info Cards -->
+        <div class="lg:col-span-2">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all hover:bg-white/10">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                <i class="fas fa-birthday-cake text-2xl"></i>
+              </span>
+              <div>
+                <p class="text-2xl font-extrabold text-white">2,000+</p>
+                <p class="text-xs font-medium text-gray-400">Parties Hosted Successfully</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all hover:bg-white/10">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-accent/20 text-accent">
+                <i class="fas fa-star text-2xl"></i>
+              </span>
+              <div>
+                <p class="text-2xl font-extrabold text-white">4.9/5</p>
+                <p class="text-xs font-medium text-gray-400">average Parent Rating</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all hover:bg-white/10">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                <i class="fas fa-clock text-2xl"></i>
+              </span>
+              <div>
+                <p class="text-2xl font-extrabold text-white">2-4 Hours</p>
+                <p class="text-xs font-medium text-gray-400">Flexible Party Duration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 lg:block">
+      <div class="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/30 p-1.5">
+        <span class="h-2 w-1 animate-bounce rounded-full bg-white"></span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 2: PaRTY PaCKaGES (aLTERNaTING ROWS) ================= -->
+  <section id="packages" class="bg-white py-16 dark:bg-secondary md:py-24">
+    <div class="mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20">
+          Party Packages
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          All-Inclusive Packages, <span class="text-primary">Zero Stress</span>
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          Every package is fully customizable. Choose a starting point and we'll tailor it to your child's dream party.
+        </p>
+      </div>
+
+      <div class="space-y-16">
+        <!-- Package 1: Image Left -->
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          <div class="relative order-1">
+            <div class="absolute -inset-3 -rotate-2 rounded-3xl bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl"></div>
+            <img
+              src="assets/h2.jpg"
+              alt="Basic party package with colorful decorations"
+              class="relative w-full rounded-3xl object-cover shadow-xl"
+              style="aspect-ratio: 4/3;"
+            />
+            <span class="absolute -top-3 -left-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
+              <i class="fas fa-star text-2xl"></i>
+            </span>
+          </div>
+          <div class="order-2 text-center lg:text-left">
+            <span class="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-primary/20">Most Popular</span>
+            <h3 class="mb-4 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">The Classic Bash</h3>
+            <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Perfect for smaller celebrations. Includes 2 hours of play, a private party room, basic decorations, juice, and snacks for up to 10 children.
+            </p>
+            <ul class="mb-6 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Up to 10 kids</li>
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> 2 hours play + party room</li>
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Juice, snacks &amp; basic decor</li>
+            </ul>
+            <div class="flex items-center justify-center gap-4 lg:justify-start">
+              <span class="text-3xl font-extrabold text-accent">$199</span>
+              <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:shadow-xl active:scale-95">
+                <i class="fas fa-calendar-check"></i> Book This
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 2: Image Right (Reversed) -->
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          <div class="order-2 text-center lg:order-1 lg:text-left">
+            <span class="mb-3 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent dark:bg-accent/20">Best Value</span>
+            <h3 class="mb-4 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">The Deluxe Celebration</h3>
+            <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Our most-booked package. 3 hours of fun, themed decorations, pizza, drinks, a dedicated party host, and gift bags for up to 20 children.
+            </p>
+            <ul class="mb-6 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-accent"></i> Up to 20 kids</li>
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-accent"></i> 3 hours + themed decorations</li>
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-accent"></i> Pizza, drinks, host &amp; gift bags</li>
+            </ul>
+            <div class="flex items-center justify-center gap-4 lg:justify-start">
+              <span class="text-3xl font-extrabold text-accent">$349</span>
+              <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white shadow-lg shadow-accent/30 transition-all hover:shadow-xl active:scale-95">
+                <i class="fas fa-calendar-check"></i> Book This
+              </a>
+            </div>
+          </div>
+          <div class="relative order-1 lg:order-2">
+            <div class="absolute -inset-3 rotate-2 rounded-3xl bg-gradient-to-tr from-accent/20 to-primary/20 blur-xl"></div>
+            <img
+              src="assets/h3.jpg"
+              alt="Deluxe party package with themed decorations"
+              class="relative w-full rounded-3xl object-cover shadow-xl"
+              style="aspect-ratio: 4/3;"
+            />
+            <span class="absolute -top-3 -right-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent text-white shadow-lg">
+              <i class="fas fa-crown text-2xl"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Package 3: Image Left -->
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          <div class="relative order-1">
+            <div class="absolute -inset-3 -rotate-2 rounded-3xl bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl"></div>
+            <img
+              src="assets/h4.jpg"
+              alt="Premium party package with full decoration and entertainment"
+              class="relative w-full rounded-3xl object-cover shadow-xl"
+              style="aspect-ratio: 4/3;"
+            />
+            <span class="absolute -top-3 -left-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
+              <i class="fas fa-gem text-2xl"></i>
+            </span>
+          </div>
+          <div class="order-2 text-center lg:text-left">
+            <span class="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-primary/20">Premium</span>
+            <h3 class="mb-4 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">The Ultimate Extravaganza</h3>
+            <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              The full VIP experience. 4 hours, custom theme, full catering, professional entertainment, and a photographer to capture every moment. Up to 30 kids.
+            </p>
+            <ul class="mb-6 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Up to 30 kids</li>
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> 4 hours + custom theme</li>
+              <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Catering, entertainment &amp; photographer</li>
+            </ul>
+            <div class="flex items-center justify-center gap-4 lg:justify-start">
+              <span class="text-3xl font-extrabold text-accent">$599</span>
+              <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:shadow-xl active:scale-95">
+                <i class="fas fa-calendar-check"></i> Book This
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 3: WHaT'S INCLUDED (GRID WITH ICONS) ================= -->
+  <section class="relative overflow-hidden bg-gray-50 py-16 dark:bg-darkGrey md:py-24">
+    <div class="absolute top-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary dark:bg-primary/20">
+          What's Included
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          Everything You Need for a <span class="text-primary">Perfect Party</span>
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          No hidden fees, no last-minute stress. Just show up and celebrate.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Item 1 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
+            <i class="fas fa-door-open text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Private Party Room</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Your own decorated space for cake, food, and gifts.</p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
+            <i class="fas fa-user-tie text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Dedicated Party Host</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">a friendly host runs games and keeps everything on track.</p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
+            <i class="fas fa-utensils text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Food &amp; Drinks</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Pizza, snacks, juice, and water for all your guests.</p>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
+            <i class="fas fa-gift text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Gift Bags &amp; Prizes</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Every child leaves with a party bag and a smile.</p>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
+            <i class="fas fa-balloon text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Themed Decorations</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Balloons, banners, and tableware in your chosen theme.</p>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
+            <i class="fas fa-music text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Music &amp; Games</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Kid-friendly playlist and organized group games.</p>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
+            <i class="fas fa-camera text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Photo Opportunities</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Designated photo area with props and backdrops.</p>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
+          <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
+            <i class="fas fa-broom text-2xl"></i>
+          </span>
+          <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Cleanup Included</h3>
+          <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">We handle all the mess so you can just enjoy the day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 4: HOW IT WORKS (TIMELINE) ================= -->
+  <section class="bg-white py-16 dark:bg-secondary md:py-24">
+    <div class="mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20">
+          How It Works
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          From Idea to <span class="text-primary">Celebration</span> in 4 Steps
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          We've made party planning as easy as 1-2-3-4.
+        </p>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline Line (Desktop) -->
+        <div class="absolute left-1/2 top-0 hidden h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary via-accent to-primary lg:block"></div>
+
+        <div class="space-y-12 lg:space-y-0">
+          <!-- Step 1 -->
+          <div class="relative lg:grid lg:grid-cols-2 lg:gap-16">
+            <div class="lg:pr-16 lg:text-right">
+              <div class="rounded-2xl bg-gray-50 p-6 shadow-sm dark:bg-white/5 dark:border dark:border-white/10">
+                <span class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-white">01</span>
+                <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Choose Your Package</h3>
+                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">Browse our packages and pick the one that fits your guest count and budget.</p>
+              </div>
+            </div>
+            <div class="hidden lg:block"></div>
+            <span class="absolute left-1/2 top-6 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-primary dark:border-secondary lg:block"></span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:pt-16">
+            <div class="hidden lg:block"></div>
+            <div class="lg:pl-16">
+              <div class="rounded-2xl bg-gray-50 p-6 shadow-sm dark:bg-white/5 dark:border dark:border-white/10">
+                <span class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-sm font-extrabold text-white">02</span>
+                <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Pick a Theme</h3>
+                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">Choose from superheroes, princesses, jungle safari, space, or request a custom theme.</p>
+              </div>
+            </div>
+            <span class="absolute left-1/2 top-22 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-accent dark:border-secondary lg:block"></span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:pt-16">
+            <div class="lg:pr-16 lg:text-right">
+              <div class="rounded-2xl bg-gray-50 p-6 shadow-sm dark:bg-white/5 dark:border dark:border-white/10">
+                <span class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-white">03</span>
+                <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Book Your Date</h3>
+                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">Reserve online or call us. We'll confirm all details within 24 hours.</p>
+              </div>
+            </div>
+            <div class="hidden lg:block"></div>
+            <span class="absolute left-1/2 top-38 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-primary dark:border-secondary lg:block"></span>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:pt-16">
+            <div class="hidden lg:block"></div>
+            <div class="lg:pl-16">
+              <div class="rounded-2xl bg-gray-50 p-6 shadow-sm dark:bg-white/5 dark:border dark:border-white/10">
+                <span class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-sm font-extrabold text-white">04</span>
+                <h3 class="mb-2 text-lg font-bold text-secondary dark:text-white">Celebrate!</h3>
+                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">arrive, relax, and enjoy. Our team handles setup, games, food, and cleanup.</p>
+              </div>
+            </div>
+            <span class="absolute left-1/2 top-54 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-accent dark:border-secondary lg:block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 5: TESTIMONIaLS (MaSONRY STYLE) ================= -->
+  <section class="relative overflow-hidden bg-gray-50 py-16 dark:bg-darkGrey md:py-24">
+    <div class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="mb-14 text-center">
+        <span class="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary dark:bg-primary/20">
+          Real Stories
+        </span>
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
+          Parents <span class="text-accent">Love</span> Our Parties
+        </h2>
+        <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
+          Don't just take our word for it - here's what families are saying.
+        </p>
+      </div>
+
+      <!-- Masonry-style grid -->
+      <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+        <!-- Testimonial 1 -->
+        <div class="flex flex-col rounded-2xl min-w-[300px] flex-1 snap-center bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:bg-secondary dark:border dark:border-white/10">
+          <div class="mb-4 flex gap-1 text-primary">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            "The Deluxe package was worth every penny. The host kept 18 kids entertained for 3 hours straight. I actually got to sit down and eat cake!"
+          </p>
+          <div class="mt-auto flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=5" alt="Laura M." class="h-10 w-10 rounded-full object-cover border-2 border-primary">
+            <div>
+              <p class="text-sm font-bold text-secondary dark:text-white">Laura M.</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Deluxe Package · October 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="flex flex-col rounded-2xl min-w-[300px] flex-1 snap-center bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:bg-secondary dark:border dark:border-white/10">
+          <div class="mb-4 flex gap-1 text-primary">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            "We booked the Premium package for our daughter's 7th birthday. The custom unicorn theme was stunning, and the photographer captured amazing photos. Highly recommend!"
+          </p>
+          <div class="mt-auto flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=9" alt="Rachel P." class="h-10 w-10 rounded-full object-cover border-2 border-accent">
+            <div>
+              <p class="text-sm font-bold text-secondary dark:text-white">Rachel P.</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Premium Package · September 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="flex flex-col rounded-2xl min-w-[300px] flex-1 snap-center bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:bg-secondary dark:border dark:border-white/10">
+          <div class="mb-4 flex gap-1 text-primary">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            "Great value for the Classic package. My son and his friends had a blast. Only wish it was a bit longer - 2 hours flew by!"
+          </p>
+          <div class="mt-auto flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=11" alt="David K." class="h-10 w-10 rounded-full object-cover border-2 border-primary">
+            <div>
+              <p class="text-sm font-bold text-secondary dark:text-white">David K.</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Classic Package · august 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="flex flex-col rounded-2xl min-w-[300px] flex-1 snap-center bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:bg-secondary dark:border dark:border-white/10">
+          <div class="mb-4 flex gap-1 text-primary">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            "The staff went above and beyond. My daughter is shy, and the host gently included her in every game. She felt like a princess all day."
+          </p>
+          <div class="mt-auto flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=1" alt="Sophia T." class="h-10 w-10 rounded-full object-cover border-2 border-accent">
+            <div>
+              <p class="text-sm font-bold text-secondary dark:text-white">Sophia T.</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Deluxe Package · November 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="flex flex-col rounded-2xl min-w-[300px] flex-1 snap-center bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:bg-secondary dark:border dark:border-white/10">
+          <div class="mb-4 flex gap-1 text-primary">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            "Clean, safe, and incredibly well-organized. The gift bags were a huge hit. We'll definitely be back for our younger child's birthday."
+          </p>
+          <div class="mt-auto flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=13" alt="amir N." class="h-10 w-10 rounded-full object-cover border-2 border-primary">
+            <div>
+              <p class="text-sm font-bold text-secondary dark:text-white">amir N.</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Classic Package · July 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="flex flex-col rounded-2xl min-w-[300px] flex-1 snap-center bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:bg-secondary dark:border dark:border-white/10">
+          <div class="mb-4 flex gap-1 text-primary">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            "Best party venue in town. The Premium package's catering was delicious and the entertainment kept everyone laughing. Zero stress for us!"
+          </p>
+          <div class="mt-auto flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=10" alt="Jessica B." class="h-10 w-10 rounded-full object-cover border-2 border-accent">
+            <div>
+              <p class="text-sm font-bold text-secondary dark:text-white">Jessica B.</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Premium Package · December 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 6: FINaL CTa ================= -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-primary via-accent to-primary py-16 md:py-24">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-white blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-white blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto max-w-4xl px-4 text-center xl:px-8">
+      <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+        <i class="fas fa-calendar-star text-[10px]"></i> Dates Fill Fast
+      </span>
+      <h2 class="mb-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+        Let's Make Their <span class="text-white/90">Birthday Wish</span> Come True
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-white/90">
+        Book your party this month and receive a free decoration upgrade plus a complimentary birthday cake for the guest of honor.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-sm font-bold text-accent shadow-xl transition-all hover:shadow-2xl hover:scale-105 active:scale-95">
+          <i class="fas fa-calendar-check"></i> Reserve Your Date
+        </a>
+        <a href="pricing.html" class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 bg-white/10 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white hover:text-accent">
+          <i class="fas fa-tags"></i> Compare Packages
+        </a>
+      </div>
+      <p class="mt-6 text-xs text-white/70">
+        <i class="fas fa-phone mr-1"></i> Call us: +91 80 1234 5678 &nbsp;·&nbsp;
+        <i class="fas fa-envelope mr-1"></i> parties@kidsplayzone.com
+      </p>
+    </div>
+  </section>
+
+</main>
+
+  <footer class="bg-secondary pt-20 pb-10 text-white">
+    <div class="mx-auto max-w-7xl px-4 xl:px-8">
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+
+        <div>
+          <a href="index.html" class="flex items-center gap-3 mb-6">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+              <i class="fas fa-shapes text-lg"></i>
+            </span>
+            <div class="leading-tight">
+              <span class="block text-xl font-medium tracking-tight text-accent">Kids Play Zone</span>
+              <span class="block text-[10px] text-gray-400 font-medium tracking-wide">Indoor Play & Party Center</span>
+            </div>
+          </a>
+          <p class="text-gray-400 mb-6">
+            The ultimate fun, colorful, and cheerful destination for indoor play, exciting attractions, and unforgettable birthday parties! 
+            
+          </p>
+          <div class="flex gap-3">
+            <a href="#"
+              class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="#"
+              class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i
+                class="fab fa-instagram"></i></a>
+            <a href="#"
+              class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i
+                class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-medium mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="index.html" class="block hover:text-accent transition-colors">Home</a></li>
+            <li><a href="attractions.html" class="block hover:text-accent transition-colors">Attractions</a></li>
+            <li><a href="pricing.html" class="block hover:text-accent transition-colors">Pricing & Passes</a></li>
+            <li><a href="about.html" class="block hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="block hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-medium mb-6">Get in Touch</h4>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-map-marker-alt text-accent"></i>
+              </div>
+              <div class="text-gray-400">
+                123 Playful ave, Funville<br>
+                United Kingdom
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-phone text-accent"></i>
+              </div>
+              <div class="text-gray-400">+91 80 1234 5678</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-envelope text-accent"></i>
+              </div>
+              <div class="text-gray-400">hello@kidsplayzone.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-medium mb-6">Join the Club</h4>
+          <p class="text-gray-400 mb-4">
+            Get updates on our latest attractions, special passes, and exclusive party deals.
+          </p>
+          <form class="space-y-4">
+            <input type="email" placeholder="Work email address"
+              class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-accent focus:outline-none text-white">
+            <button type="submit"
+              class="w-full bg-accent text-white font-medium py-3 rounded-lg hover:opacity-90 transition-colors">
+              Subscribe Now
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div>&copy; 2026 Kids Play Zone & Party Center. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-accent transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const l3 = document.getElementById('line3');
+
+    // Menu Toggle Logic
+    hamburger.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (!isHidden) {
+        l1.style.transform = 'translateY(8px) rotate(45deg)';
+        l2.style.opacity = '0';
+        l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+      } else {
+        l1.style.transform = 'none';
+        l2.style.opacity = '1';
+        l3.style.transform = 'none';
+      }
+    });
+
+    // Theme Logic
+    const themeBtns = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')];
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-sun"></i>');
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-moon"></i>');
+      }
+    }
+    themeBtns.forEach(btn => btn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark'))));
+    setTheme(localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // RTL Logic
+    const rtlBtns = [document.getElementById('rtlToggleDesktop'), document.getElementById('rtlToggleMobile')];
+    rtlBtns.forEach(btn => btn.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      bodyEl.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
+    }));
+
+    // Calculator Logic
+    function calculateCost() {
+      const sqft = document.getElementById('sqft').value;
+      const grade = document.getElementById('grade').value;
+      const total = document.getElementById('totalCost');
+
+      if (sqft > 0) {
+        const calculation = sqft * grade;
+        // animate number
+        let current = 0;
+        const step = calculation / 20;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= calculation) {
+            total.innerText = calculation.toLocaleString();
+            clearInterval(timer);
+          } else {
+            total.innerText = Math.floor(current).toLocaleString();
+          }
+        }, 30);
+      } else {
+        alert("Please enter a valid area size.");
+      }
+    }
+  </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const path = window.location.pathname.split('/').pop() || 'index.html';
+        
+        // Remove hardcoded active state from Home
+        const homeDesktop = document.querySelector('.home-trigger');
+        if (homeDesktop) {
+            homeDesktop.classList.remove('bg-accent', 'text-white', 'shadow-sm');
+            homeDesktop.classList.add('hover:text-primary', 'dark:hover:text-accent');
+        }
+        
+        const mobileSummaries = document.querySelectorAll('#mobileMenu summary');
+        mobileSummaries.forEach(summary => {
+            if (summary.textContent.includes('Home')) {
+                summary.classList.remove('bg-accent', 'text-white', 'shadow-md');
+                summary.classList.add('hover:bg-gray-50', 'dark:hover:bg-white/5');
+            }
+        });
+
+        // Find the matching link
+        const links = document.querySelectorAll('a[href="' + path + '"]');
+        links.forEach(link => {
+            // For desktop nav
+            if (link.closest('.hidden.xl\\:flex')) {
+                const dropdown = link.closest('.group');
+                if (dropdown && dropdown.querySelector('button')) {
+                    const btn = dropdown.querySelector('button');
+                    btn.classList.remove('hover:text-primary', 'dark:hover:text-accent');
+                    btn.classList.add('bg-accent', 'text-white', 'shadow-sm');
+                } else {
+                    link.classList.remove('hover:text-primary', 'dark:hover:text-accent');
+                    link.classList.add('bg-accent', 'text-white', 'shadow-sm');
+                }
+            }
+            
+            // For mobile nav
+            if (link.closest('#mobileMenu')) {
+                const details = link.closest('details');
+                if (details && details.querySelector('summary')) {
+                    const summary = details.querySelector('summary');
+                    summary.classList.remove('hover:bg-gray-50', 'dark:hover:bg-white/5');
+                    summary.classList.add('bg-accent', 'text-white', 'shadow-md');
+                } else {
+                    link.classList.remove('hover:bg-gray-50', 'dark:hover:bg-white/5');
+                    link.classList.add('bg-accent', 'text-white', 'shadow-md');
+                    const icon = link.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-accent');
+                        icon.classList.add('text-white');
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
