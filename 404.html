@@ -1,161 +1,161 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class=" scroll-smooth"
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lost in Play | Kids Play Zone</title>
-  <link rel="icon" href="assets/fav.png" type="image/jpeg">
-  <meta name="description" content="Oops! This page bounced away. Let's get you back to the fun at Kids Play Zone.">
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Lost in Play | Kids Play Zone</title>
+ <link rel="icon" href="assets/fav.png" type="image/jpeg">
+ <meta name="description" content="Oops! This page bounced away. Let's get you back to the fun at Kids Play Zone.">
 
-  <!-- Font Awesome (same as main) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+ <!-- Font Awesome (same as main) -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Tailwind (CDN script, no local file needed) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#FF477E',
-            accent: '#8338EC',
-            secondary: '#000000',
-            darkGrey: '#111111'
-          },
-          fontFamily: {
-            'display': ['Open Sans', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    };
-  </script>
+ <!-- Tailwind (CDN script, no local file needed) -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script>
+  tailwind.config = {
+   darkMode: 'class',
+   theme: {
+    extend: {
+     colors: {
+      primary: '#FF477E',
+      accent: '#8338EC',
+      secondary: '#000000',
+      darkGrey: '#111111'
+     },
+     fontFamily: {
+      'display': ['Open Sans', 'system-ui', 'sans-serif'],
+     }
+    }
+   }
+  };
+ </script>
 
-  <!-- Google Fonts Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+ <!-- Google Fonts Open Sans -->
+ <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      font-family: 'Open Sans', sans-serif;
-    }
+ <style>
+  * {
+   font-family: 'Open Sans', sans-serif;
+  }
 
-    /* Custom playful blob animation */
-    @keyframes float {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(3deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-    .float-bubble {
-      animation: float 4s ease-in-out infinite;
-    }
-    .float-bubble-delay {
-      animation: float 5s ease-in-out infinite reverse;
-    }
+  /* Custom playful blob animation */
+  @keyframes float {
+   0% { transform: translateY(0px) rotate(0deg); }
+   50% { transform: translateY(-12px) rotate(3deg); }
+   100% { transform: translateY(0px) rotate(0deg); }
+  }
+  .float-bubble {
+   animation: float 4s ease-in-out infinite;
+  }
+  .float-bubble-delay {
+   animation: float 5s ease-in-out infinite reverse;
+  }
 
-    /* soft scale for the 404 number */
-    .error-number {
-      text-shadow: 0 10px 25px rgba(255, 71, 126, 0.3);
-    }
+  /* soft scale for the 404 number */
+  .error-number {
+   text-shadow: 0 10px 25px rgba(255, 71, 126, 0.3);
+  }
 
-    /* dark mode shadow adjustments */
-    .dark .error-number {
-      text-shadow: 0 10px 25px rgba(131, 56, 236, 0.4);
-    }
+  /* dark mode shadow adjustments */
+  .dark .error-number {
+   text-shadow: 0 10px 25px rgba(131, 56, 236, 0.4);
+  }
 
-    /* glassmorphism card base */
-    .glass-card {
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-    .dark .glass-card {
-      background: rgba(17, 17, 17, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-  </style>
+  /* glassmorphism card base */
+  .glass-card {
+   backdrop-filter: blur(12px);
+   background: rgba(255, 255, 255, 0.7);
+   border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  .dark .glass-card {
+   background: rgba(17, 17, 17, 0.7);
+   border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+ </style>
 </head>
 
-<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 min-h-screen flex items-center justify-center relative overflow-hidden overflow-x-hidden">
+<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 min-h-screen flex items-center justify-center relative overflow-hidden ">
 
-  <!-- Decorative background blobs (playful) -->
-  <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl dark:bg-primary/10 float-bubble pointer-events-none"></div>
-  <div class="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl dark:bg-accent/10 float-bubble-delay pointer-events-none"></div>
-  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-primary/10 blur-2xl dark:bg-accent/10 pointer-events-none"></div>
+ <!-- Decorative background blobs (playful) -->
+ <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl dark:bg-primary/10 float-bubble pointer-events-none"></div>
+ <div class="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl dark:bg-accent/10 float-bubble-delay pointer-events-none"></div>
+ <div class="absolute top-1/3 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-primary/10 blur-2xl dark:bg-accent/10 pointer-events-none"></div>
 
-  <!-- Main 404 content -->
-  <main class="relative z-10 mx-auto w-full max-w-3xl px-6 py-12">
-    <div class="glass-card rounded-[3rem] p-8 md:p-12 text-center shadow-2xl shadow-primary/10 dark:shadow-accent/10 transition-all duration-300">
+ <!-- Main 404 content -->
+ <main class="relative z-10 mx-auto w-full max-w-3xl px-6 py-12 overflow-x-hidden w-full">
+  <div class="glass-card rounded-[3rem] p-8 md:p-12 text-center shadow-2xl shadow-primary/10 dark:shadow-accent/10 transition-all duration-300">
 
-      <!-- Animated icon + number combo -->
-      <div class="flex flex-col items-center justify-center gap-2">
-        <!-- playful icon circle -->
-        <span class="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-primary/15 text-primary dark:bg-primary/25 dark:text-primary text-4xl">
-          <i class="fas fa-shapes"></i>
-        </span>
-        <!-- big 404 -->
-        <h1 class="error-number text-7xl md:text-9xl font-extrabold tracking-tight text-primary dark:text-accent drop-shadow-sm">
-          4<span class="text-accent dark:text-primary">0</span>4
-        </h1>
-        <!-- small badge -->
-        <span class="mt-2 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20 dark:text-accent">
-          <i class="fas fa-map-signs"></i> Lost in play
-        </span>
-      </div>
+   <!-- Animated icon + number combo -->
+   <div class="flex flex-col items-center justify-center gap-2">
+    <!-- playful icon circle -->
+    <span class="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-primary/15 text-primary dark:bg-primary/25 dark:text-primary text-4xl">
+     <i class="fas fa-shapes"></i>
+    </span>
+    <!-- big 404 -->
+    <h1 class="error-number text-7xl md:text-9xl font-extrabold tracking-tight text-primary dark:text-accent drop-shadow-sm">
+     4<span class="text-accent dark:text-primary">0</span>4
+    </h1>
+    <!-- small badge -->
+    <span class="mt-2 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20 dark:text-accent">
+     <i class="fas fa-map-signs"></i> Lost in play
+    </span>
+   </div>
 
-      <!-- Headline + message -->
-      <h2 class="mt-6 text-2xl font-bold text-secondary dark:text-white md:text-3xl">
-        Oops! This page bounced away.
-      </h2>
-      <p class="mx-auto mt-3 max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-300">
-        Looks like you've wandered into our imaginary play tunnel. The page you're looking for doesn't exist — but the fun definitely does!
-      </p>
+   <!-- Headline + message -->
+   <h2 class="mt-6 text-2xl font-bold text-secondary dark:text-white md:text-3xl">
+    Oops! This page bounced away.
+   </h2>
+   <p class="mx-auto mt-3 max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-300">
+    Looks like you've wandered into our imaginary play tunnel. The page you're looking for doesn't exist — but the fun definitely does!
+   </p>
 
-      <!-- Illustration / visual hint: small playful emojis or icons -->
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-3xl opacity-60 dark:opacity-40">
-        <i class="fas fa-birthday-cake text-primary"></i>
-        <i class="fas fa-gamepad text-accent"></i>
-        <i class="fas fa-shapes text-primary"></i>
-        <i class="fas fa-trampoline?"></i> <!-- using font-awesome doesn't have trampoline, using fa-child instead -->
-        <i class="fas fa-child text-accent"></i>
-        <i class="fas fa-star text-primary"></i>
-      </div>
+   <!-- Illustration / visual hint: small playful emojis or icons -->
+   <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-3xl opacity-60 dark:opacity-40">
+    <i class="fas fa-birthday-cake text-primary"></i>
+    <i class="fas fa-gamepad text-accent"></i>
+    <i class="fas fa-shapes text-primary"></i>
+    <i class="fas fa-trampoline?"></i> <!-- using font-awesome doesn't have trampoline, using fa-child instead -->
+    <i class="fas fa-child text-accent"></i>
+    <i class="fas fa-star text-primary"></i>
+   </div>
 
-      <!-- Action buttons: go home / explore -->
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="index.html"
-           class="inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40 active:scale-95">
-          <i class="fas fa-home"></i> Back to Home
-        </a>
-        <a href="attractions.html"
-           class="inline-flex items-center gap-2 rounded-xl border-2 border-accent/30 bg-white/60 px-7 py-3.5 text-sm font-semibold text-accent backdrop-blur-sm transition-all hover:border-accent hover:bg-accent hover:text-white dark:bg-white/5 dark:border-accent/40 dark:hover:bg-accent dark:hover:text-white">
-          <i class="fas fa-gamepad"></i> Explore Attractions
-        </a>
-      </div>
+   <!-- Action buttons: go home / explore -->
+   <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+    <a href="index.html"
+      class="inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40 active:scale-95">
+     <i class="fas fa-home"></i> Back to Home
+    </a>
+    <a href="attractions.html"
+      class="inline-flex items-center gap-2 rounded-xl border-2 border-accent/30 bg-white/60 px-7 py-3.5 text-sm font-semibold text-accent backdrop-blur-sm transition-all hover:border-accent hover:bg-accent hover:text-white dark:bg-white/5 dark:border-accent/40 dark:hover:bg-accent dark:hover:text-white">
+     <i class="fas fa-gamepad"></i> Explore Attractions
+    </a>
+   </div>
 
-      <!-- Small playful hint -->
-      <p class="mt-8 text-xs text-gray-400 dark:text-gray-500">
-        <i class="fas fa-map-pin mr-1 text-primary/70"></i> 123 Playful Ave, Funville · Open daily 9AM – 8PM
-      </p>
-    </div>
+   <!-- Small playful hint -->
+   <p class="mt-8 text-xs text-gray-400 dark:text-gray-500">
+    <i class="fas fa-map-pin mr-1 text-primary/70"></i> 123 Playful Ave, Funville · Open daily 9AM – 8PM
+   </p>
+  </div>
 
-    <!-- tiny footer-like text (optional) but no actual navbar/footer -->
-    <p class="mt-8 text-center text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Kids Play Zone & Party Center · Keep playing!
-    </p>
-  </main>
+  <!-- tiny footer-like text (optional) but no actual navbar/footer -->
+  <p class="mt-8 text-center text-xs text-gray-400 dark:text-gray-500">
+   &copy; 2026 Kids Play Zone & Party Center · Keep playing!
+  </p>
+ </main>
 
-  <!-- Minimal script to handle dark mode preference (optional but consistent with main site) -->
-  <script>
-    // Apply saved theme or system preference (same as main site, but no toggle needed)
-    (function() {
-      const htmlEl = document.documentElement;
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        htmlEl.classList.add('dark');
-      } else {
-        htmlEl.classList.remove('dark');
-      }
-    })();
-  </script>
+ <!-- Minimal script to handle dark mode preference (optional but consistent with main site) -->
+ <script>
+  // Apply saved theme or system preference (same as main site, but no toggle needed)
+  (function() {
+   const htmlEl = document.documentElement;
+   const savedTheme = localStorage.getItem('theme');
+   if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    htmlEl.classList.add('dark');
+   } else {
+    htmlEl.classList.remove('dark');
+   }
+  })();
+ </script>
 </body>
 </html>
