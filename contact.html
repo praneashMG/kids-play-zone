@@ -43,6 +43,20 @@
   #mobileMenu {
    transition: all 0.3s ease-in-out;
   }
+  #mobileMenu:not(.hidden) {
+   display: block;
+   animation: menuSlideDown 0.25s ease-out forwards;
+  }
+  @keyframes menuSlideDown {
+   from {
+    opacity: 0;
+    transform: translateY(-8px);
+   }
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
 
   .glass-effect {
    backdrop-filter: blur(10px);
@@ -97,9 +111,6 @@
      <!-- about -->
      <li><a href="about.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
 
-     <!-- Contact -->
-     <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
-
      <!-- attractions -->
      <li><a href="attractions.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Attractions</a></li>
 
@@ -115,8 +126,14 @@
       <ul class="invisible absolute left-0 mt-1.5 w-60 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
        <li><a href="admin-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">Admin Dashboard</a></li>
        <li><a href="user-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">User Dashboard</a></li>
-      </ul>
+
+    </ul>
      </li>
+
+     <!-- Contact -->
+     <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+
+
 
     </ul>
     <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
@@ -155,7 +172,7 @@
    </div>
   </div>
   <div id="mobileMenu"
-   class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 xl:hidden overflow-hidden transition-all duration-300">
+   class="hidden absolute top-full left-0 right-0 z-50 border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/10 xl:hidden overflow-y-auto max-h-[calc(100vh-4rem)] shadow-2xl transition-all duration-300">
    <div class="flex flex-col gap-1 p-4">
     <details class="group">
      <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
@@ -173,9 +190,6 @@
     <a href="about.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
      <i class="fas fa-info-circle text-accent w-6"></i> About
     </a>
-    <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
-     <i class="fas fa-envelope text-accent w-6"></i> Contact
-    </a>
     <a href="attractions.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
      <i class="fas fa-gamepad text-accent w-6"></i> Attractions
     </a>
@@ -192,6 +206,9 @@
       <a href="user-dashboard.html" class="py-2 hover:text-accent">User Dashboard</a>
      </div>
     </details>
+    <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+     <i class="fas fa-envelope text-accent w-6"></i> Contact
+    </a>
     <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
      <button id="rtlToggleMobile"
       class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">

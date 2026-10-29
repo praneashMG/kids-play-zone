@@ -43,6 +43,20 @@
   #mobileMenu {
    transition: all 0.3s ease-in-out;
   }
+  #mobileMenu:not(.hidden) {
+   display: block;
+   animation: menuSlideDown 0.25s ease-out forwards;
+  }
+  @keyframes menuSlideDown {
+   from {
+    opacity: 0;
+    transform: translateY(-8px);
+   }
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
 
   .glass-effect {
    backdrop-filter: blur(10px);
@@ -97,9 +111,6 @@
      <!-- about -->
      <li><a href="about.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
 
-     <!-- Contact -->
-     <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
-
      <!-- attractions -->
      <li><a href="attractions.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Attractions</a></li>
 
@@ -115,8 +126,14 @@
       <ul class="invisible absolute left-0 mt-1.5 w-60 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
        <li><a href="admin-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">Admin Dashboard</a></li>
        <li><a href="user-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">User Dashboard</a></li>
-      </ul>
+
+    </ul>
      </li>
+
+     <!-- Contact -->
+     <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+
+
 
     </ul>
     <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
@@ -155,7 +172,7 @@
    </div>
   </div>
   <div id="mobileMenu"
-   class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 xl:hidden overflow-hidden transition-all duration-300">
+   class="hidden absolute top-full left-0 right-0 z-50 border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/10 xl:hidden overflow-y-auto max-h-[calc(100vh-4rem)] shadow-2xl transition-all duration-300">
    <div class="flex flex-col gap-1 p-4">
     <details class="group">
      <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
@@ -173,9 +190,6 @@
     <a href="about.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
      <i class="fas fa-info-circle text-accent w-6"></i> About
     </a>
-    <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
-     <i class="fas fa-envelope text-accent w-6"></i> Contact
-    </a>
     <a href="attractions.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
      <i class="fas fa-gamepad text-accent w-6"></i> Attractions
     </a>
@@ -192,6 +206,9 @@
       <a href="user-dashboard.html" class="py-2 hover:text-accent">User Dashboard</a>
      </div>
     </details>
+    <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+     <i class="fas fa-envelope text-accent w-6"></i> Contact
+    </a>
     <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
      <button id="rtlToggleMobile"
       class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
@@ -541,36 +558,118 @@
     </p>
    </div>
 
-   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <!-- Gallery 1 -->
-    <div class="group relative overflow-hidden rounded-2xl shadow-sm">
-     <img src="assets/df.jpg" alt="Kids playing in soft play area" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
-      <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Soft Play</p>
+   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Gallery 1: Toddler Soft Play -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-white/10">
+     <div class="overflow-hidden">
+      <img src="assets/a2.jpg" alt="Toddler Soft Play Zone with padded obstacles and slides" class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+     </div>
+     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+      <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+       <div>
+        <span class="inline-block rounded-full bg-primary/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">Ages 1 - 4</span>
+        <h3 class="mt-1 text-base font-bold text-white">Toddler Soft Play</h3>
+        <p class="text-xs text-gray-300">Cushioned crawl-ways, foam blocks & gentle slides</p>
+       </div>
+       <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform group-hover:scale-110">
+        <i class="fas fa-baby text-xs"></i>
+       </span>
+      </div>
      </div>
     </div>
 
-    <!-- Gallery 2 -->
-    <div class="group relative overflow-hidden rounded-2xl shadow-sm">
-     <img src="assets/df2.jpg" alt="Child climbing adventure zone" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
-      <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Climbing Zone</p>
+    <!-- Gallery 2: Adventure Climbing Structure -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-white/10">
+     <div class="overflow-hidden">
+      <img src="assets/a3.jpg" alt="Adventure Climbing structure with rope tunnels" class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+     </div>
+     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+      <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+       <div>
+        <span class="inline-block rounded-full bg-accent/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">Ages 4 - 12</span>
+        <h3 class="mt-1 text-base font-bold text-white">Adventure Climbing</h3>
+        <p class="text-xs text-gray-300">Multi-tier rope towers, bridges & lookout decks</p>
+       </div>
+       <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform group-hover:scale-110">
+        <i class="fas fa-mountain text-xs"></i>
+       </span>
+      </div>
      </div>
     </div>
 
-    <!-- Gallery 3 -->
-    <div class="group relative overflow-hidden rounded-2xl shadow-sm">
-     <img src="assets/df3.jpg" alt="Trampoline park fun" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
-      <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Trampolines</p>
+    <!-- Gallery 3: Creative Corner Arts & Crafts -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-white/10">
+     <div class="overflow-hidden">
+      <img src="assets/a4.jpg" alt="Creative corner arts and crafts studio for kids" class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+     </div>
+     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+      <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+       <div>
+        <span class="inline-block rounded-full bg-primary/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">All Ages</span>
+        <h3 class="mt-1 text-base font-bold text-white">Creative Arts & Crafts</h3>
+        <p class="text-xs text-gray-300">Hands-on easel painting, clay crafts & sensory tables</p>
+       </div>
+       <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform group-hover:scale-110">
+        <i class="fas fa-palette text-xs"></i>
+       </span>
+      </div>
      </div>
     </div>
 
-    <!-- Gallery 4 -->
-    <div class="group relative overflow-hidden rounded-2xl shadow-sm">
-     <img src="assets/df4.jpg" alt="Creative corner arts and crafts" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100">
-      <p class="absolute bottom-4 left-4 text-sm font-bold text-white">Creative Corner</p>
+    <!-- Gallery 4: Trampoline Bounce Arena -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-white/10">
+     <div class="overflow-hidden">
+      <img src="assets/a7.jpg" alt="Trampoline arena with padded bounce courts" class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+     </div>
+     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+      <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+       <div>
+        <span class="inline-block rounded-full bg-accent/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">High Energy</span>
+        <h3 class="mt-1 text-base font-bold text-white">Trampoline Park</h3>
+        <p class="text-xs text-gray-300">Interconnected trampoline mats with safety wall pads</p>
+       </div>
+       <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform group-hover:scale-110">
+        <i class="fas fa-bolt text-xs"></i>
+       </span>
+      </div>
+     </div>
+    </div>
+
+    <!-- Gallery 5: Role Play Village -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-white/10">
+     <div class="overflow-hidden">
+      <img src="assets/a8.jpg" alt="Mini role play village and pretend supermarket" class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+     </div>
+     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+      <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+       <div>
+        <span class="inline-block rounded-full bg-primary/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">Imaginative Play</span>
+        <h3 class="mt-1 text-base font-bold text-white">Role Play Village</h3>
+        <p class="text-xs text-gray-300">Mini grocery store, bakery, fire station & clinic</p>
+       </div>
+       <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform group-hover:scale-110">
+        <i class="fas fa-store text-xs"></i>
+       </span>
+      </div>
+     </div>
+    </div>
+
+    <!-- Gallery 6: Ball Pit Arena & Spiral Slide -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-white/10">
+     <div class="overflow-hidden">
+      <img src="assets/a6.jpg" alt="Thousands of colorful sanitized balls in ball pit arena" class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+     </div>
+     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+      <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+       <div>
+        <span class="inline-block rounded-full bg-accent/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">Fan Favorite</span>
+        <h3 class="mt-1 text-base font-bold text-white">Ball Pit Arena</h3>
+        <p class="text-xs text-gray-300">Thousands of sanitized, soft multi-colored balls</p>
+       </div>
+       <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform group-hover:scale-110">
+        <i class="fas fa-circle text-xs"></i>
+       </span>
+      </div>
      </div>
     </div>
    </div>

@@ -43,6 +43,20 @@
   #mobileMenu {
    transition: all 0.3s ease-in-out;
   }
+  #mobileMenu:not(.hidden) {
+   display: block;
+   animation: menuSlideDown 0.25s ease-out forwards;
+  }
+  @keyframes menuSlideDown {
+   from {
+    opacity: 0;
+    transform: translateY(-8px);
+   }
+   to {
+    opacity: 1;
+    transform: translateY(0);
+   }
+  }
 
   .glass-effect {
    backdrop-filter: blur(10px);
@@ -97,9 +111,6 @@
      <!-- about -->
      <li><a href="about.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
 
-     <!-- Contact -->
-     <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
-
      <!-- attractions -->
      <li><a href="attractions.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Attractions</a></li>
 
@@ -115,8 +126,14 @@
       <ul class="invisible absolute left-0 mt-1.5 w-60 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
        <li><a href="admin-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">Admin Dashboard</a></li>
        <li><a href="user-dashboard.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors text-sm">User Dashboard</a></li>
-      </ul>
+
+    </ul>
      </li>
+
+     <!-- Contact -->
+     <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+
+
 
     </ul>
     <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
@@ -155,7 +172,7 @@
    </div>
   </div>
   <div id="mobileMenu"
-   class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 xl:hidden overflow-hidden transition-all duration-300">
+   class="hidden absolute top-full left-0 right-0 z-50 border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/10 xl:hidden overflow-y-auto max-h-[calc(100vh-4rem)] shadow-2xl transition-all duration-300">
    <div class="flex flex-col gap-1 p-4">
     <details class="group">
      <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
@@ -173,9 +190,6 @@
     <a href="about.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
      <i class="fas fa-info-circle text-accent w-6"></i> About
     </a>
-    <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
-     <i class="fas fa-envelope text-accent w-6"></i> Contact
-    </a>
     <a href="attractions.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
      <i class="fas fa-gamepad text-accent w-6"></i> Attractions
     </a>
@@ -192,6 +206,9 @@
       <a href="user-dashboard.html" class="py-2 hover:text-accent">User Dashboard</a>
      </div>
     </details>
+    <a href="contact.html" class="block items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+     <i class="fas fa-envelope text-accent w-6"></i> Contact
+    </a>
     <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
      <button id="rtlToggleMobile"
       class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
@@ -295,119 +312,295 @@
  </section>
 
 
- <!-- ================= SECTION 2: PaRTY PaCKaGES (aLTERNaTING ROWS) ================= -->
- <section id="packages" class="bg-white py-16 dark:bg-secondary md:py-24">
-  <div class="mx-auto max-w-7xl px-4 xl:px-8">
-   <div class="mb-14 text-center">
-    <span class="mb-3 inline-block rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent dark:bg-accent/20">
-     Party Packages
-    </span>
-    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
-     All-Inclusive Packages, <span class="text-primary">Zero Stress</span>
-    </h2>
-    <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
-     Every package is fully customizable. Choose a starting point and we'll tailor it to your child's dream party.
-    </p>
+ <!-- ================= SECTION 2: PARTY PACKAGES (FEATURED SHOWCASE & TIERED CARDS) ================= -->
+ <section id="packages" class="relative overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-gray-50/30 py-20 dark:from-secondary dark:via-darkGrey dark:to-secondary md:py-28">
+  <!-- Subtle decorative ambient elements -->
+  <div class="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute top-1/2 -left-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 xl:px-8">
+   <!-- Section Header with Visual Context -->
+   <div class="mb-16 flex flex-col items-center justify-between gap-6 md:flex-row md:items-end">
+    <div class="text-center md:text-left">
+     <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary dark:bg-primary/20">
+      <i class="fas fa-sparkles text-xs"></i>
+      Celebration Collections
+     </div>
+     <h2 class="text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl lg:text-5xl">
+      Turn Milestones into <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Magic</span>
+     </h2>
+     <p class="mt-3 max-w-xl text-base text-gray-600 dark:text-gray-300">
+      Tailored experiences crafted for every group size and dream theme. Every package includes dedicated party staff, zero setup stress, and guaranteed joy.
+     </p>
+    </div>
+    <!-- Quick filter pill badge & link -->
+    <div class="flex items-center gap-3">
+     <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-gray-600 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+      <i class="fas fa-shield-heart text-primary"></i> 100% Parent Approved
+     </span>
+     <a href="pricing.html" class="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent transition-all hover:bg-accent hover:text-white dark:bg-accent/20">
+      <span>Compare All Plans</span>
+      <i class="fas fa-arrow-right text-[10px]"></i>
+     </a>
+    </div>
    </div>
 
-   <div class="space-y-16">
-    <!-- Package 1: Image Left -->
-    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-     <div class="relative order-1">
-      <div class="absolute -inset-3 -rotate-2 rounded-3xl bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl"></div>
-      <img
-       src="assets/h2.jpg"
-       alt="Basic party package with colorful decorations"
-       class="relative w-full rounded-3xl object-cover shadow-xl"
-       style="aspect-ratio: 4/3;"
-      />
-      <span class="absolute -top-3 -left-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
-       <i class="fas fa-star text-2xl"></i>
-      </span>
-     </div>
-     <div class="order-2 text-center lg:text-left">
-      <span class="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-primary/20">Most Popular</span>
-      <h3 class="mb-4 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">The Classic Bash</h3>
-      <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-       Perfect for smaller celebrations. Includes 2 hours of play, a private party room, basic decorations, juice, and snacks for up to 10 children.
-      </p>
-      <ul class="mb-6 space-y-3 text-sm text-gray-600 dark:text-gray-400">
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Up to 10 kids</li>
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> 2 hours play + party room</li>
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Juice, snacks &amp; basic decor</li>
-      </ul>
-      <div class="flex items-center justify-center gap-4 lg:justify-start">
-       <span class="text-3xl font-extrabold text-accent">$199</span>
-       <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:shadow-xl active:scale-95">
-        <i class="fas fa-calendar-check"></i> Book This
-       </a>
-      </div>
-     </div>
-    </div>
-
-    <!-- Package 2: Image Right (Reversed) -->
-    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-     <div class="order-2 text-center lg:order-1 lg:text-left">
-      <span class="mb-3 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent dark:bg-accent/20">Best Value</span>
-      <h3 class="mb-4 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">The Deluxe Celebration</h3>
-      <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-       Our most-booked package. 3 hours of fun, themed decorations, pizza, drinks, a dedicated party host, and gift bags for up to 20 children.
-      </p>
-      <ul class="mb-6 space-y-3 text-sm text-gray-600 dark:text-gray-400">
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-accent"></i> Up to 20 kids</li>
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-accent"></i> 3 hours + themed decorations</li>
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-accent"></i> Pizza, drinks, host &amp; gift bags</li>
-      </ul>
-      <div class="flex items-center justify-center gap-4 lg:justify-start">
-       <span class="text-3xl font-extrabold text-accent">$349</span>
-       <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white shadow-lg shadow-accent/30 transition-all hover:shadow-xl active:scale-95">
-        <i class="fas fa-calendar-check"></i> Book This
-       </a>
-      </div>
-     </div>
-     <div class="relative order-1 lg:order-2">
-      <div class="absolute -inset-3 rotate-2 rounded-3xl bg-gradient-to-tr from-accent/20 to-primary/20 blur-xl"></div>
+   <!-- HERO SPOTLIGHT: Flagship Package (The Deluxe Celebration) -->
+   <div class="mb-14 overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-white via-white to-accent/5 shadow-2xl shadow-accent/10 dark:border-accent/30 dark:from-secondary dark:via-secondary dark:to-accent/10">
+    <div class="grid items-stretch lg:grid-cols-12">
+     <!-- Left: Immersive Visual with Floating Badges -->
+     <div class="relative min-h-[320px] overflow-hidden lg:col-span-7">
       <img
        src="assets/h3.jpg"
-       alt="Deluxe party package with themed decorations"
-       class="relative w-full rounded-3xl object-cover shadow-xl"
-       style="aspect-ratio: 4/3;"
+       alt="Deluxe party package themed setup"
+       class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
       />
-      <span class="absolute -top-3 -right-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent text-white shadow-lg">
-       <i class="fas fa-crown text-2xl"></i>
-      </span>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-secondary/60 dark:lg:to-secondary"></div>
+      
+      <!-- Top Tag -->
+      <div class="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+       <span class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-lg shadow-accent/40">
+        <i class="fas fa-crown text-[11px]"></i> Most Popular Choice
+       </span>
+       <span class="inline-flex items-center gap-1 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
+        <i class="fas fa-users text-primary text-[10px]"></i> 15 - 20 Kids
+       </span>
+      </div>
+
+      <!-- Bottom Visual Accent with mini perks overlay -->
+      <div class="absolute bottom-4 left-4 right-4 hidden sm:flex items-center justify-between rounded-2xl border border-white/20 bg-black/40 p-3.5 backdrop-blur-md text-white">
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-accent text-white">
+         <i class="fas fa-hat-wizard"></i>
+        </span>
+        <div class="text-left">
+         <p class="text-xs font-bold">Dedicated Party Master</p>
+         <p class="text-[11px] text-gray-300">Guides games & coordinates cake ceremony</p>
+        </div>
+       </div>
+       <div class="text-right">
+        <span class="text-xs font-semibold text-yellow-300"><i class="fas fa-star mr-1"></i>4.9/5 Rating</span>
+       </div>
+      </div>
+     </div>
+
+     <!-- Right: Compelling Story & Package Details -->
+     <div class="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5 lg:p-10">
+      <div>
+       <div class="flex items-center justify-between">
+        <span class="text-xs font-bold uppercase tracking-wider text-accent">Signature Experience</span>
+        <div class="text-right">
+         <span class="text-xs text-gray-400 line-through">$399</span>
+         <span class="ml-1.5 text-3xl font-extrabold text-accent sm:text-4xl">$349</span>
+        </div>
+       </div>
+       <h3 class="mt-2 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">
+        The Deluxe Celebration
+       </h3>
+       <p class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+        The ultimate balance of fun, comfort, and hassle-free hosting. Includes full access to sensory slides, party rooms, gourmet pizza, and custom themed decorations.
+       </p>
+
+       <!-- Key Highlights Grid -->
+       <div class="mt-6 grid grid-cols-2 gap-3">
+        <div class="flex items-start gap-2.5 rounded-xl bg-gray-50 p-2.5 dark:bg-white/5">
+         <i class="fas fa-clock text-accent mt-0.5 text-xs"></i>
+         <div class="text-xs">
+          <span class="font-bold text-secondary dark:text-white block">3 Hours Play</span>
+          <span class="text-gray-500 dark:text-gray-400">Play zone + party hall</span>
+         </div>
+        </div>
+        <div class="flex items-start gap-2.5 rounded-xl bg-gray-50 p-2.5 dark:bg-white/5">
+         <i class="fas fa-pizza-slice text-accent mt-0.5 text-xs"></i>
+         <div class="text-xs">
+          <span class="font-bold text-secondary dark:text-white block">Pizza & Refreshments</span>
+          <span class="text-gray-500 dark:text-gray-400">Fresh juice & snacks</span>
+         </div>
+        </div>
+        <div class="flex items-start gap-2.5 rounded-xl bg-gray-50 p-2.5 dark:bg-white/5">
+         <i class="fas fa-wand-magic-sparkles text-accent mt-0.5 text-xs"></i>
+         <div class="text-xs">
+          <span class="font-bold text-secondary dark:text-white block">Themed Decor</span>
+          <span class="text-gray-500 dark:text-gray-400">Balloons & tableware</span>
+         </div>
+        </div>
+        <div class="flex items-start gap-2.5 rounded-xl bg-gray-50 p-2.5 dark:bg-white/5">
+         <i class="fas fa-gift text-accent mt-0.5 text-xs"></i>
+         <div class="text-xs">
+          <span class="font-bold text-secondary dark:text-white block">Gift Bags Included</span>
+          <span class="text-gray-500 dark:text-gray-400">Custom for all 20 kids</span>
+         </div>
+        </div>
+       </div>
+
+       <!-- Full Inclusions Checklist -->
+       <div class="mt-6 space-y-2 border-t border-gray-100 pt-4 text-xs text-gray-600 dark:border-white/10 dark:text-gray-300">
+        <div class="flex items-center gap-2">
+         <i class="fas fa-check-circle text-accent text-sm"></i>
+         <span>Private climate-controlled party suite with sound system</span>
+        </div>
+        <div class="flex items-center gap-2">
+         <i class="fas fa-check-circle text-accent text-sm"></i>
+         <span>Full cleanup and gift packing handled by our staff</span>
+        </div>
+       </div>
+      </div>
+
+      <!-- Action Row -->
+      <div class="mt-8 flex flex-wrap items-center gap-3 pt-4 border-t border-gray-100 dark:border-white/10">
+       <a href="contact.html" class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-accent/30 transition-all hover:bg-accent/90 hover:scale-[1.02] active:scale-95">
+        <i class="fas fa-calendar-check"></i>
+        <span>Book Deluxe Package</span>
+       </a>
+       <a href="pricing.html" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white px-5 py-3.5 text-sm font-semibold text-secondary transition-all hover:bg-gray-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
+        <span>Customize</span>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- COMPLEMENTARY TIERS: Classic Bash & Ultimate Extravaganza -->
+   <div class="grid gap-8 lg:grid-cols-2">
+    <!-- Package 1: The Classic Bash -->
+    <div class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-secondary sm:p-8">
+     <!-- Card Header with Image Strip -->
+     <div>
+      <div class="relative mb-6 h-52 w-full overflow-hidden rounded-2xl">
+       <img
+        src="assets/h2.jpg"
+        alt="Classic Bash kids party setup"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+       />
+       <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent"></div>
+       <span class="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-md">
+        <i class="fas fa-star text-[10px]"></i> Cozy Celebrations
+       </span>
+       <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+        <span class="text-xs font-semibold"><i class="fas fa-child mr-1"></i>Up to 10 Kids</span>
+        <span class="text-xs font-semibold"><i class="fas fa-stopwatch mr-1"></i>2 Hours Duration</span>
+       </div>
+      </div>
+
+      <div class="flex items-baseline justify-between">
+       <h3 class="text-xl font-extrabold text-secondary dark:text-white sm:text-2xl">The Classic Bash</h3>
+       <div class="text-right">
+        <span class="text-2xl font-extrabold text-primary sm:text-3xl">$199</span>
+        <span class="block text-[11px] text-gray-400">All taxes included</span>
+       </div>
+      </div>
+      <p class="mt-3 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+       Ideal for intimate milestones, toddler parties, or first birthdays where quality time and relaxed atmosphere matter most.
+      </p>
+
+      <!-- Highlights -->
+      <div class="mt-6 space-y-2.5 text-xs text-gray-600 dark:text-gray-300">
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>2 hours of full play zone access & private decorated room</span>
+       </div>
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>Organic fruit juice boxes, mini cupcakes & snack platters</span>
+       </div>
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>Party setup, music playlist and full post-party sweep</span>
+       </div>
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>Complimentary downloadable digital party invitations</span>
+       </div>
+      </div>
+     </div>
+
+     <!-- Footer CTA -->
+     <div class="mt-8 border-t border-gray-100 pt-5 dark:border-white/10">
+      <div class="flex items-center justify-between gap-3">
+       <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Great for ages 1-5</span>
+       <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-primary/20 transition-all hover:bg-primary/90 hover:scale-105 active:scale-95">
+        <span>Reserve Classic</span>
+        <i class="fas fa-arrow-right text-[10px]"></i>
+       </a>
+      </div>
      </div>
     </div>
 
-    <!-- Package 3: Image Left -->
-    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-     <div class="relative order-1">
-      <div class="absolute -inset-3 -rotate-2 rounded-3xl bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl"></div>
-      <img
-       src="assets/h4.jpg"
-       alt="Premium party package with full decoration and entertainment"
-       class="relative w-full rounded-3xl object-cover shadow-xl"
-       style="aspect-ratio: 4/3;"
-      />
-      <span class="absolute -top-3 -left-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
-       <i class="fas fa-gem text-2xl"></i>
-      </span>
-     </div>
-     <div class="order-2 text-center lg:text-left">
-      <span class="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-primary/20">Premium</span>
-      <h3 class="mb-4 text-2xl font-extrabold text-secondary dark:text-white sm:text-3xl">The Ultimate Extravaganza</h3>
-      <p class="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-       The full VIP experience. 4 hours, custom theme, full catering, professional entertainment, and a photographer to capture every moment. Up to 30 kids.
+    <!-- Package 3: The Ultimate Extravaganza -->
+    <div class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-secondary sm:p-8">
+     <!-- Card Header with Image Strip -->
+     <div>
+      <div class="relative mb-6 h-52 w-full overflow-hidden rounded-2xl">
+       <img
+        src="assets/h4.jpg"
+        alt="Ultimate Extravaganza VIP kids party"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+       />
+       <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent"></div>
+       <span class="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-accent to-primary px-3 py-1 text-xs font-bold text-white shadow-md">
+        <i class="fas fa-gem text-[10px]"></i> VIP Experience
+       </span>
+       <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+        <span class="text-xs font-semibold"><i class="fas fa-child mr-1"></i>Up to 30 Kids</span>
+        <span class="text-xs font-semibold"><i class="fas fa-stopwatch mr-1"></i>4 Hours Full Hall</span>
+       </div>
+      </div>
+
+      <div class="flex items-baseline justify-between">
+       <h3 class="text-xl font-extrabold text-secondary dark:text-white sm:text-2xl">The Ultimate Extravaganza</h3>
+       <div class="text-right">
+        <span class="text-2xl font-extrabold text-accent sm:text-3xl">$599</span>
+        <span class="block text-[11px] text-gray-400">All-Inclusive VIP</span>
+       </div>
+      </div>
+      <p class="mt-3 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+       The complete red-carpet celebration with gourmet artisan catering, live entertainers, interactive games, and memory photobooks.
       </p>
-      <ul class="mb-6 space-y-3 text-sm text-gray-600 dark:text-gray-400">
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Up to 30 kids</li>
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> 4 hours + custom theme</li>
-       <li class="flex items-center justify-center gap-2 lg:justify-start"><i class="fas fa-check-circle text-primary"></i> Catering, entertainment &amp; photographer</li>
-      </ul>
-      <div class="flex items-center justify-center gap-4 lg:justify-start">
-       <span class="text-3xl font-extrabold text-accent">$599</span>
-       <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:shadow-xl active:scale-95">
-        <i class="fas fa-calendar-check"></i> Book This
+
+      <!-- Highlights -->
+      <div class="mt-6 space-y-2.5 text-xs text-gray-600 dark:text-gray-300">
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-accent/10 text-accent dark:bg-accent/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>4 hours complete VIP access with private lounge for parents</span>
+       </div>
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-accent/10 text-accent dark:bg-accent/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>Full catered banquet, custom multi-tier cake & chocolate fountain</span>
+       </div>
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-accent/10 text-accent dark:bg-accent/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>Professional entertainer (magician / mascot) + live photographer</span>
+       </div>
+       <div class="flex items-center gap-2.5">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full bg-accent/10 text-accent dark:bg-accent/20">
+         <i class="fas fa-check text-[10px]"></i>
+        </span>
+        <span>Premium curated gift hampers with personalized souvenirs</span>
+       </div>
+      </div>
+     </div>
+
+     <!-- Footer CTA -->
+     <div class="mt-8 border-t border-gray-100 pt-5 dark:border-white/10">
+      <div class="flex items-center justify-between gap-3">
+       <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Great for large gatherings</span>
+       <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-accent/20 transition-all hover:bg-accent/90 hover:scale-105 active:scale-95">
+        <span>Reserve VIP</span>
+        <i class="fas fa-arrow-right text-[10px]"></i>
        </a>
       </div>
      </div>
@@ -417,98 +610,204 @@
  </section>
 
 
- <!-- ================= SECTION 3: WHaT'S INCLUDED (GRID WITH ICONS) ================= -->
- <section class="relative overflow-hidden bg-gray-50 py-16 dark:bg-darkGrey md:py-24">
-  <div class="absolute top-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
+ <!-- ================= SECTION 3: THE ALL-INCLUSIVE PROMISE (VISUAL BENTO GRID) ================= -->
+ <section class="relative overflow-hidden bg-white py-20 dark:bg-secondary md:py-28">
   <div class="relative mx-auto max-w-7xl px-4 xl:px-8">
-   <div class="mb-14 text-center">
-    <span class="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary dark:bg-primary/20">
-     What's Included
-    </span>
-    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl">
-     Everything You Need for a <span class="text-primary">Perfect Party</span>
+   <!-- Section Header -->
+   <div class="mb-16 text-center">
+    <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent dark:bg-accent/20">
+     <i class="fas fa-shield-halved text-xs"></i>
+     The Party Promise
+    </div>
+    <h2 class="text-3xl font-extrabold tracking-tight text-secondary dark:text-white sm:text-4xl lg:text-5xl">
+     What's Included in <span class="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Every Celebration</span>
     </h2>
-    <p class="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300">
-     No hidden fees, no last-minute stress. Just show up and celebrate.
+    <p class="mx-auto mt-3 max-w-2xl text-base text-gray-600 dark:text-gray-300">
+     We eliminated all hidden fees and last-minute errands. Here is everything we bring to the table as standard.
     </p>
    </div>
 
-   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-    <!-- Item 1 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
-      <i class="fas fa-door-open text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Private Party Room</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Your own decorated space for cake, food, and gifts.</p>
+   <!-- Dynamic Bento Grid Layout with High-Impact Imagery -->
+   <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Bento 1: Large Featured Card with Rich Photo Overlay (Private Spaces) -->
+    <div class="group relative overflow-hidden rounded-3xl border border-gray-100 bg-secondary shadow-lg dark:border-white/10 lg:row-span-2">
+     <img
+      src="assets/df.jpg"
+      alt="Private decorated celebration room"
+      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 min-h-[420px]"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+     <div class="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 text-white">
+      <div class="flex items-center justify-between">
+       <span class="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-md">
+        <i class="fas fa-crown text-[10px]"></i> 100% Private Suite
+       </span>
+       <span class="rounded-full bg-black/40 px-3 py-1 text-[11px] font-semibold backdrop-blur-md">
+        Exclusively Yours
+       </span>
+      </div>
+      <div>
+       <span class="text-xs font-semibold uppercase tracking-wider text-primary">Sanctuary For Celebrations</span>
+       <h3 class="mt-1 text-2xl font-extrabold sm:text-3xl">Dedicated Party Suites</h3>
+       <p class="mt-3 text-xs leading-relaxed text-gray-300">
+        Your family receives an exclusive, climate-controlled, themed party suite reserved solely for your guests. Complete with comfortable seating for adults, dining tables for kids, bluetooth audio controls, and custom cake lighting.
+       </p>
+       <div class="mt-5 flex flex-wrap gap-2 text-[11px]">
+        <span class="rounded-lg bg-white/10 px-2.5 py-1 backdrop-blur-sm"><i class="fas fa-snowflake mr-1"></i> AC Controlled</span>
+        <span class="rounded-lg bg-white/10 px-2.5 py-1 backdrop-blur-sm"><i class="fas fa-volume-high mr-1"></i> Custom Audio</span>
+        <span class="rounded-lg bg-white/10 px-2.5 py-1 backdrop-blur-sm"><i class="fas fa-lock mr-1"></i> Fully Private</span>
+       </div>
+      </div>
+     </div>
     </div>
 
-    <!-- Item 2 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
-      <i class="fas fa-user-tie text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Dedicated Party Host</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">a friendly host runs games and keeps everything on track.</p>
+    <!-- Bento 2: Card with Warm Accent (Dedicated Party Host) -->
+    <div class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-secondary">
+     <div>
+      <div class="relative h-44 w-full overflow-hidden">
+       <img
+        src="assets/tr.jpg"
+        alt="Dedicated party host running energetic kids games"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+       />
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+       <span class="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-accent/90 px-3 py-1 text-[11px] font-bold text-white shadow-sm backdrop-blur-sm">
+        <i class="fas fa-user-ninja text-[10px]"></i> Dedicated Host
+       </span>
+      </div>
+      <div class="p-5 sm:p-6">
+       <h3 class="text-lg font-extrabold text-secondary dark:text-white">Dedicated Host & Game Master</h3>
+       <p class="mt-2 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+        From greeting guests to running group games, directing cake ceremonies, and keeping timing effortless so parents can relax and enjoy.
+       </p>
+      </div>
+     </div>
+     <div class="px-5 pb-5 sm:px-6 sm:pb-6 flex items-center gap-2 text-xs font-semibold text-accent">
+      <i class="fas fa-check-circle"></i>
+      <span>Parents relax while kids play safely</span>
+     </div>
     </div>
 
-    <!-- Item 3 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
-      <i class="fas fa-utensils text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Food &amp; Drinks</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Pizza, snacks, juice, and water for all your guests.</p>
+    <!-- Bento 3: Card with Photo Accent (Catering & Yummies) -->
+    <div class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-secondary">
+     <div>
+      <div class="relative h-44 w-full overflow-hidden">
+       <img
+        src="assets/fd.jpg"
+        alt="Delicious party feast with pizzas, juice and treats"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+       />
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+       <span class="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-primary/90 px-3 py-1 text-[11px] font-bold text-white shadow-sm backdrop-blur-sm">
+        <i class="fas fa-pizza-slice text-[10px]"></i> Fresh & Hot
+       </span>
+      </div>
+      <div class="p-5 sm:p-6">
+       <h3 class="text-lg font-extrabold text-secondary dark:text-white">Kid-Approved Feast</h3>
+       <p class="mt-2 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+        Fresh artisan pizzas, wholesome finger foods, crunchy popcorn, organic juice boxes, and unlimited water stations for children and parents.
+       </p>
+      </div>
+     </div>
+     <div class="px-5 pb-5 sm:px-6 sm:pb-6 flex items-center gap-2 text-xs font-semibold text-primary">
+      <i class="fas fa-heart"></i>
+      <span>Dietary options available on request</span>
+     </div>
     </div>
 
-    <!-- Item 4 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
-      <i class="fas fa-gift text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Gift Bags &amp; Prizes</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Every child leaves with a party bag and a smile.</p>
+    <!-- Bento 4: Interactive Style Card with Media Thumbnail (Balloons & Theming) -->
+    <div class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-secondary">
+     <div>
+      <div class="relative h-44 w-full overflow-hidden">
+       <img
+        src="assets/g1.jpg"
+        alt="Themed party decorations and balloon arrangements"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+       />
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+       <span class="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-primary/90 px-3 py-1 text-[11px] font-bold text-white shadow-sm backdrop-blur-sm">
+        <i class="fas fa-wand-magic-sparkles text-[10px]"></i> 12+ Themes
+       </span>
+      </div>
+      <div class="p-5 sm:p-6">
+       <h3 class="text-lg font-extrabold text-secondary dark:text-white">Custom Themed Immersion</h3>
+       <p class="mt-2 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+        Color-matched balloon arches, dynamic table settings, personalized birthday banners, and matching party plates ready before you arrive.
+       </p>
+      </div>
+     </div>
+     <div class="px-5 pb-5 sm:px-6 sm:pb-6 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+      <span>Setup & styling</span>
+      <span class="font-bold text-secondary dark:text-white"><i class="fas fa-palette mr-1 text-primary"></i>All Included</span>
+     </div>
     </div>
 
-    <!-- Item 5 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
-      <i class="fas fa-wand-magic-sparkles text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Themed Decorations</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Balloons, banners, and tableware in your chosen theme.</p>
+    <!-- Bento 5: Card with Photo (Photo Moments) -->
+    <div class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-secondary">
+     <div>
+      <div class="relative h-44 w-full overflow-hidden">
+       <img
+        src="assets/b1.jpg"
+        alt="Children taking joyful group photos at play zone backdrop"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+       />
+       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+       <span class="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-accent/90 px-3 py-1 text-[11px] font-bold text-white shadow-sm backdrop-blur-sm">
+        <i class="fas fa-camera-retro text-[10px]"></i> Photo Moments
+       </span>
+      </div>
+      <div class="p-5 sm:p-6">
+       <h3 class="text-lg font-extrabold text-secondary dark:text-white">Selfie & Photobooth Backdrop</h3>
+       <p class="mt-2 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+        Delightful memory corner with props, photo frames, and fun accessories for parents and kids to snap joyful, memorable portraits.
+       </p>
+      </div>
+     </div>
+     <div class="px-5 pb-5 sm:px-6 sm:pb-6 flex items-center gap-2 text-xs font-semibold text-accent">
+      <i class="fas fa-sparkles"></i>
+      <span>Free digital keepsake photo for host</span>
+     </div>
     </div>
 
-    <!-- Item 6 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
-      <i class="fas fa-music text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Music &amp; Games</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Kid-friendly playlist and organized group games.</p>
-    </div>
+    <!-- Bento 6: Highlight Card - Zero Stress Guarantee (Cleanup & Gift Bags) -->
+    <div class="md:col-span-2 lg:col-span-3 rounded-3xl border border-primary/20 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 p-6 sm:p-8 dark:border-primary/30">
+     <div class="grid items-center gap-6 md:grid-cols-12">
+      <!-- Thumbnail Visual -->
+      <div class="hidden sm:block md:col-span-3 overflow-hidden rounded-2xl shadow-md">
+       <img
+        src="assets/gf.jpg"
+        alt="Children receiving gifts and party treats"
+        class="h-36 w-full object-cover"
+       />
+      </div>
+      
+      <div class="md:col-span-6">
+       <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-md shadow-primary/30">
+         <i class="fas fa-broom-ball text-lg"></i>
+        </span>
+        <h4 class="text-xl font-extrabold text-secondary dark:text-white">Zero Cleanup & Packing Guarantee</h4>
+       </div>
+       <p class="mt-2 text-xs leading-relaxed text-gray-600 dark:text-gray-300">
+        Never pick up a wrapper or worry about packing gifts. When party time concludes, our team gently boxes all birthday presents and handles 100% of the cleanup.
+       </p>
+      </div>
 
-    <!-- Item 7 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-all group-hover:scale-110 dark:bg-primary/20">
-      <i class="fas fa-camera text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Photo Opportunities</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">Designated photo area with props and backdrops.</p>
-    </div>
-
-    <!-- Item 8 -->
-    <div class="group rounded-2xl bg-white p-6 text-center shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-secondary dark:border dark:border-white/10">
-     <span class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent transition-all group-hover:scale-110 dark:bg-accent/20">
-      <i class="fas fa-broom text-2xl"></i>
-     </span>
-     <h3 class="mb-2 text-base font-bold text-secondary dark:text-white">Cleanup Included</h3>
-     <p class="text-xs leading-relaxed text-gray-600 dark:text-gray-400">We handle all the mess so you can just enjoy the day.</p>
+      <div class="flex flex-col sm:flex-row md:flex-col items-stretch md:items-end justify-center gap-2.5 md:col-span-3">
+       <div class="rounded-xl bg-white px-4 py-2.5 text-center shadow-sm dark:bg-secondary">
+        <p class="text-xs font-bold text-accent">Curated Gift Bags</p>
+        <p class="text-[11px] text-gray-400">Packed for every guest</p>
+       </div>
+       <a href="contact.html" class="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-accent/20 transition-all hover:bg-accent/90 active:scale-95">
+        <span>Inquire Now</span>
+        <i class="fas fa-arrow-right text-[10px]"></i>
+       </a>
+      </div>
+     </div>
     </div>
    </div>
   </div>
  </section>
-
 
  <!-- ================= SECTION 4: HOW IT WORKS (TIMELINE) ================= -->
  <section class="bg-white py-16 dark:bg-secondary md:py-24">
